@@ -11,6 +11,7 @@ public class scriptOcean : MonoBehaviour
 	int trashMin = 10;
 	List<GameObject> chunkTrash = new List<GameObject>();
 
+	private bool initialized = false;
 
 	//Coroutines
 	private IEnumerator spawnTrashRoutine;
@@ -34,28 +35,41 @@ public class scriptOcean : MonoBehaviour
 
 	public void UpdateChunk()
 	{
-		float playerDistFromEdge = Mathf.Sqrt(bounds.SqrDistance(scriptOceanManager.playerPos));
-		bool visible = playerDistFromEdge <= scriptOceanManager.maxViewDist;
-		SetVisible(visible);
+		if (initialized)
+		{
+			float playerDistFromEdge = Mathf.Sqrt(bounds.SqrDistance(scriptOceanManager.playerPos));
+			bool visible = playerDistFromEdge <= scriptOceanManager.maxViewDist;
+			SetVisible(visible);
+		}
 	}
 
 	public void SpawnTrash(int trashMax)
 	{
-		//spawnTrashRoutine = SpawnTrashRoutine(trashMax);
-		//StartCoroutine(spawnTrashRoutine);
+		//if (spawnTrashRoutine == null)
+		//{
+		//	spawnTrashRoutine = SpawnTrashRoutine(trashMax);
+		//	StartCoroutine(spawnTrashRoutine);
+		//}
 
 		trashQuantity = Random.Range(trashMin, trashMax);
 
-		for (int i = 0; i < trashQuantity; i++)
+		while (chunkTrash.Count < trashQuantity)
 		{
 			var randX = Random.Range(bounds.min.x, bounds.max.x);
 			var randY = Random.Range(bounds.min.y, bounds.max.y);
 
-			var trash = Instantiate(pfabTrash, new Vector3(randX, .35f, randY), Quaternion.identity);
+			var randDir = Random.Range(0f, 360f);
+
+			var trash = Instantiate(scriptPrefabManager.Instance.TrashPrefab, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir));
 			trash.transform.parent = transform;
+			var bob = trash.AddComponent<scriptOceanBob>();
+			bob.speed = 5;
+			bob.range = .01f;
 
 			chunkTrash.Add(trash);
 		}
+
+		initialized = true;
 	}
 
 	public void SetVisible(bool visible)
@@ -77,26 +91,28 @@ public class scriptOcean : MonoBehaviour
 		return gameObject.activeSelf;
 	}
 
-	//Coroutine
+	#region Coroutines
+
 	private IEnumerator SpawnTrashRoutine(int trashMax)
 	{
-		//trashQuantity = Random.Range(trashMin, trashMax);
+		trashQuantity = Random.Range(trashMin, trashMax);
 
-		//for (int i = 0; i < trashQuantity; i++)
-		//{
-			yield return new WaitForSeconds(.1f);
+		while (chunkTrash.Count < trashQuantity)
+		{
+			var randX = Random.Range(bounds.min.x, bounds.max.x);
+			var randY = Random.Range(bounds.min.y, bounds.max.y);
 
-		//	var randX = Random.Range(bounds.min.x, bounds.max.x);
-		//	var randY = Random.Range(bounds.min.y, bounds.max.y);
+			var trash = Instantiate(scriptPrefabManager.Instance.TrashPrefab, new Vector3(randX, .35f, randY), Quaternion.identity);
+			trash.transform.parent = transform;
 
-		//	var trash = Instantiate(pfabTrash, new Vector3(randX, .35f, randY), Quaternion.identity);
-		//	trash.transform.parent = transform;
+			chunkTrash.Add(trash);
 
-		//	chunkTrash.Add(trash);
-		//}
+			yield return null;
+		}
 
-		//SetVisible(false);
+		initialized = true;
 
 		spawnTrashRoutine = null;
 	}
+	#endregion
 }

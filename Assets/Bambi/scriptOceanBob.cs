@@ -6,7 +6,7 @@ public class scriptOceanBob : MonoBehaviour
 {
 	public float range;
 	public float speed;
-	public float tolerance;
+	public float offset;
 
 	private float initialY;
 
@@ -14,13 +14,22 @@ public class scriptOceanBob : MonoBehaviour
     void Start()
     {
 		initialY = transform.localPosition.y;
+
+		//Offset the bob so trash isn't bobbing uniformly... creepy @-@
+		offset = Random.Range(0f, 6.5f);
     }
 
     //Update is called once per frame
     void Update()
     {
 		//Do the bob
-		float y = initialY + (Mathf.Sin(Time.time * speed) * range);
+		float y = initialY + ((Mathf.Sin(Time.time * speed + offset)) * range);
+		//float y = initialY + (Mathf.Sin(Time.time * speed) * range);
 		transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
+	}
+
+	void DoTheBob()
+	{
+
 	}
 }

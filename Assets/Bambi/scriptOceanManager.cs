@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class scriptOceanManager : MonoBehaviour
 {
-	[Range(0, 6)]
-	public int levelOfDetail;
+	//[Range(0, 6)]
+	//public int levelOfDetail;
 
-	public const float maxViewDist = 100;
+	public const float maxViewDist = 50;
 	public const int mapChunkSize = 24;
 	public const int maxTrashQuantity = 25;
 	private int chunksVisibleInViewDist;
@@ -71,7 +71,8 @@ public class scriptOceanManager : MonoBehaviour
 				{
 					//chunks.Add(viewedChunkCoord, new OceanChunk(viewedChunkCoord, mapChunkSize, chunkPfab, trashPfab, transform, maxTrashQuantity));
 					Vector2 pos = viewedChunkCoord * mapChunkSize;
-					var newChunk = Instantiate(chunkPfab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
+
+					var newChunk = Instantiate(scriptPrefabManager.Instance.OceanPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
 					newChunk.GetComponent<scriptOcean>().InitializeChunk(transform, mapChunkSize);
 
 					chunks.Add(viewedChunkCoord, newChunk);
