@@ -13,9 +13,6 @@ public class scriptOcean : MonoBehaviour
 
 	private bool initialized = false;
 
-	//Coroutines
-	private IEnumerator spawnTrashRoutine;
-
 	private void Start()
 	{
 		//Validation
@@ -45,12 +42,6 @@ public class scriptOcean : MonoBehaviour
 
 	public void SpawnTrash(int trashMax)
 	{
-		//if (spawnTrashRoutine == null)
-		//{
-		//	spawnTrashRoutine = SpawnTrashRoutine(trashMax);
-		//	StartCoroutine(spawnTrashRoutine);
-		//}
-
 		trashQuantity = Random.Range(trashMin, trashMax);
 
 		while (chunkTrash.Count < trashQuantity)
@@ -60,11 +51,11 @@ public class scriptOcean : MonoBehaviour
 
 			var randDir = Random.Range(0f, 360f);
 
+			//Make sure the prefab is active before instantiating
+			scriptPrefabManager.Instance.TrashPrefab.SetActive(true);
+
 			var trash = Instantiate(scriptPrefabManager.Instance.TrashPrefab, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir));
 			trash.transform.parent = transform;
-			var bob = trash.AddComponent<scriptOceanBob>();
-			bob.speed = 5;
-			bob.range = .01f;
 
 			chunkTrash.Add(trash);
 		}
@@ -74,7 +65,7 @@ public class scriptOcean : MonoBehaviour
 
 	public void SetVisible(bool visible)
 	{
-		if (gameObject.activeSelf != visible)
+		if (initialized && gameObject.activeSelf != visible)
 		{
 			gameObject.SetActive(visible);
 
@@ -90,29 +81,4 @@ public class scriptOcean : MonoBehaviour
 	{
 		return gameObject.activeSelf;
 	}
-
-	#region Coroutines
-
-	private IEnumerator SpawnTrashRoutine(int trashMax)
-	{
-		trashQuantity = Random.Range(trashMin, trashMax);
-
-		while (chunkTrash.Count < trashQuantity)
-		{
-			var randX = Random.Range(bounds.min.x, bounds.max.x);
-			var randY = Random.Range(bounds.min.y, bounds.max.y);
-
-			var trash = Instantiate(scriptPrefabManager.Instance.TrashPrefab, new Vector3(randX, .35f, randY), Quaternion.identity);
-			trash.transform.parent = transform;
-
-			chunkTrash.Add(trash);
-
-			yield return null;
-		}
-
-		initialized = true;
-
-		spawnTrashRoutine = null;
-	}
-	#endregion
 }

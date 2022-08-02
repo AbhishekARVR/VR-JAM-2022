@@ -69,8 +69,10 @@ public class scriptOceanManager : MonoBehaviour
 				}
 				else
 				{
-					//chunks.Add(viewedChunkCoord, new OceanChunk(viewedChunkCoord, mapChunkSize, chunkPfab, trashPfab, transform, maxTrashQuantity));
 					Vector2 pos = viewedChunkCoord * mapChunkSize;
+
+					//Make sure prefab is active before instantiation
+					scriptPrefabManager.Instance.OceanPrefab.SetActive(true);
 
 					var newChunk = Instantiate(scriptPrefabManager.Instance.OceanPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
 					newChunk.GetComponent<scriptOcean>().InitializeChunk(transform, mapChunkSize);

@@ -19,16 +19,17 @@ public class scriptOceanBob : MonoBehaviour
 		offset = Random.Range(0f, 6.5f);
 
         initialY = transform.localPosition.y;
-        DoTheBob();
-    }
+
+		DoTheBob();
+	}
 
     //Update is called once per frame
     void Update()
     {
-        DoTheBob();
+		DoTheBob();
 	}
 
-    private void DoTheBob ()
+    public void DoTheBob()
     {
         float y = initialY + ((Mathf.Sin(Time.time * speed + offset)) * range);
 		transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
