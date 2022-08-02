@@ -11,16 +11,26 @@ public class scriptOceanBob : MonoBehaviour
 	private float initialY;
 
     //Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-		initialY = transform.localPosition.y;
+        initialY = transform.localPosition.y;
+        DoTheBob();
+
     }
+
+
 
     //Update is called once per frame
     void Update()
     {
-		//Do the bob
-		float y = initialY + (Mathf.Sin(Time.time * speed) * range);
-		transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
+        //Do the bob
+        DoTheBob();
+		
 	}
+
+    private void DoTheBob ()
+    {
+        float y = initialY + (Mathf.Sin(Time.time * speed) * range);
+        transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
+    }
 }
