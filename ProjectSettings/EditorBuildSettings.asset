@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Bambi/_sceneProcOcean.unity
+    guid: 085d292734984de4dbe719277d879816
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2955bb9db09bc62409c940a4d7a470a3, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 222dcf7d199054447b18aea94ca9d882, type: 2}

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class scriptOceanManager : MonoBehaviour
 {
+	static public scriptOceanManager Instance;
+
 	//[Range(0, 6)]
 	//public int levelOfDetail;
 
-	public const float maxViewDist = 50;
-	public const int mapChunkSize = 24;
-	public const int maxTrashQuantity = 25;
+	public float maxViewDist = 10000;
+	public int mapChunkSize = 50;
+	public int maxTrashQuantity = 5;
+	public int minTrashQuantity = 1;
 	private int chunksVisibleInViewDist;
 	public GameObject chunkPfab;
 
@@ -23,13 +26,18 @@ public class scriptOceanManager : MonoBehaviour
 	void Start()
     {
 		//validation
+		if (Instance == null)
+			Instance = this;
+		else
+			Debug.LogError("An ocean manager already exists in the scene!", Instance);
+
 		if (player == null)
 			Debug.LogError("No player refrence assigned.", this);
 
 		if (chunkPfab == null)
 			Debug.LogError("No ocean prefab assigned.", this);
 
-		chunksVisibleInViewDist = Mathf.RoundToInt(maxViewDist / mapChunkSize);
+		chunksVisibleInViewDist = Mathf.RoundToInt(Mathf.Sqrt(maxViewDist) / mapChunkSize);
 	}
 
 	private void Update()

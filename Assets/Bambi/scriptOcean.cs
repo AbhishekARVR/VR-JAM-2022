@@ -8,7 +8,6 @@ public class scriptOcean : MonoBehaviour
 	
 	Bounds bounds;
 	int trashQuantity;
-	int trashMin = 10;
 	List<GameObject> chunkTrash = new List<GameObject>();
 
 	private bool initialized = false;
@@ -27,22 +26,23 @@ public class scriptOcean : MonoBehaviour
 		transform.localScale = Vector3.one * size / 10f;
 		transform.parent = parent;
 
-		SpawnTrash(scriptOceanManager.maxTrashQuantity);
+		SpawnTrash();
 	}
 
 	public void UpdateChunk()
 	{
 		if (initialized)
 		{
-			float playerDistFromEdge = Mathf.Sqrt(bounds.SqrDistance(scriptOceanManager.playerPos));
-			bool visible = playerDistFromEdge <= scriptOceanManager.maxViewDist;
+			float playerDistFromEdge = bounds.SqrDistance(scriptOceanManager.playerPos);
+
+			bool visible = playerDistFromEdge <= scriptOceanManager.Instance.maxViewDist;
 			SetVisible(visible);
 		}
 	}
 
-	public void SpawnTrash(int trashMax)
+	public void SpawnTrash()
 	{
-		trashQuantity = Random.Range(trashMin, trashMax);
+		trashQuantity = Random.Range(scriptOceanManager.Instance.minTrashQuantity, scriptOceanManager.Instance.maxTrashQuantity);
 
 		while (chunkTrash.Count < trashQuantity)
 		{
@@ -53,6 +53,8 @@ public class scriptOcean : MonoBehaviour
 
 			//Make sure the prefab is active before instantiating
 			scriptPrefabManager.Instance.TrashPrefab.SetActive(true);
+			var test = scriptPrefabManager.Instance.TrashPrefab.GetComponent<scriptOceanBob>();
+			test.enabled = true;
 
 			var trash = Instantiate(scriptPrefabManager.Instance.TrashPrefab, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir));
 			trash.transform.parent = transform;
