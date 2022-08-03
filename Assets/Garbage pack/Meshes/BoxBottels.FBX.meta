@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 2f1cbcf436169ee4db4994e881a8e12a
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: banka
+    100002: //RootNode
+    100004: korobka
+    100006: mytay_korobka
+    100008: mytaya_banka
+    100010: otkrytay_korobka
+    100012: pivnay_butylka
+    100014: ploskay_butylka
+    100016: razbitay_butylka_niz
+    100018: razbitay_butylka_verh
+    100020: smytay_banka
+    400000: banka
+    400002: //RootNode
+    400004: korobka
+    400006: mytay_korobka
+    400008: mytaya_banka
+    400010: otkrytay_korobka
+    400012: pivnay_butylka
+    400014: ploskay_butylka
+    400016: razbitay_butylka_niz
+    400018: razbitay_butylka_verh
+    400020: smytay_banka
+    2300000: banka
+    2300002: //RootNode
+    2300004: korobka
+    2300006: mytay_korobka
+    2300008: mytaya_banka
+    2300010: otkrytay_korobka
+    2300012: pivnay_butylka
+    2300014: ploskay_butylka
+    2300016: razbitay_butylka_niz
+    2300018: razbitay_butylka_verh
+    2300020: smytay_banka
+    3300000: banka
+    3300002: //RootNode
+    3300004: korobka
+    3300006: mytay_korobka
+    3300008: mytaya_banka
+    3300010: otkrytay_korobka
+    3300012: pivnay_butylka
+    3300014: ploskay_butylka
+    3300016: razbitay_butylka_niz
+    3300018: razbitay_butylka_verh
+    3300020: smytay_banka
+    4300000: Box008
+    4300002: korobka
+    4300004: otkrytay_korobka
+    4300006: mytay_korobka
+    4300008: ploskay_butylka
+    4300010: pivnay_butylka
+    4300012: mytaya_banka
+    4300014: smytay_banka
+    4300016: banka
+    4300018: razbitay_butylka_niz
+    4300020: razbitay_butylka_verh
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c520badd08c16284982b78091a8eea14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default_Default
+    second: {fileID: 2100000, guid: b9a6aae192166d94487cf1e3369376f1, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.003
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 58
+    normalImportMode: 0
+    tangentImportMode: 0
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

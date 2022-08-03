@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scriptOcean : MonoBehaviour
 {
-	public GameObject pfabTrash;
+	public List<GameObject> pfabsTrash = new List<GameObject>();
 	
 	Bounds bounds;
 	int trashQuantity;
@@ -15,7 +15,7 @@ public class scriptOcean : MonoBehaviour
 	private void Start()
 	{
 		//Validation
-		if (pfabTrash == null)
+		if (pfabsTrash.Count == 0)
 			Debug.LogError("Missing trash prefab reference.", this);
 	}
 
@@ -52,11 +52,14 @@ public class scriptOcean : MonoBehaviour
 			var randDir = Random.Range(0f, 360f);
 
 			//Make sure the prefab is active before instantiating
-			scriptPrefabManager.Instance.TrashPrefab.SetActive(true);
-			var test = scriptPrefabManager.Instance.TrashPrefab.GetComponent<scriptOceanBob>();
-			test.enabled = true;
+			//scriptPrefabManager.Instance.TrashPrefab.SetActive(true);
+			//var test = scriptPrefabManager.Instance.TrashPrefab.GetComponent<scriptOceanBob>();
+			//test.enabled = true;
 
-			var trash = Instantiate(scriptPrefabManager.Instance.TrashPrefab, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir));
+			var randomIndexForTrash = Random.Range(0, pfabsTrash.Count);
+			var pfabTrash = pfabsTrash[randomIndexForTrash];
+			Debug.Log("trash==" + randomIndexForTrash);
+			var trash = Instantiate(pfabTrash, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir));
 			trash.transform.parent = transform;
 
 			chunkTrash.Add(trash);

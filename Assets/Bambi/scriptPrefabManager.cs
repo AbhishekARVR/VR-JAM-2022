@@ -4,7 +4,6 @@ public class scriptPrefabManager : MonoBehaviour
 {
 	// Assign the prefab in the inspector
 	public GameObject OceanPrefab;
-	public GameObject TrashPrefab;
 	//Singleton
 	private static scriptPrefabManager m_Instance = null;
 	public static scriptPrefabManager Instance
