@@ -33,10 +33,34 @@ public class scriptOcean : MonoBehaviour
 	{
 		if (initialized)
 		{
+			//Remove collected trash from chunkTrash list
+			RemoveCollectedTrash();
+			
 			float playerDistFromEdge = bounds.SqrDistance(scriptOceanManager.playerPos);
 
 			bool visible = playerDistFromEdge <= scriptOceanManager.Instance.maxViewDist;
 			SetVisible(visible);
+		}
+	}
+
+	/// <summary>
+	/// If the player has scooped up pieces of trash in this chunk, we don't want those to disappear when the player moves too far away.
+	/// </summary>
+	public void RemoveCollectedTrash()
+	{
+		List<GameObject> trashToRemove = new List<GameObject>();
+
+		foreach (GameObject trash in chunkTrash)
+		{
+			if (trash.GetComponent<scriptTrash>().isCollected)
+			{
+				trashToRemove.Add(trash);
+			}
+		}
+
+		foreach(GameObject trash in trashToRemove)
+		{
+			chunkTrash.Remove(trash);
 		}
 	}
 

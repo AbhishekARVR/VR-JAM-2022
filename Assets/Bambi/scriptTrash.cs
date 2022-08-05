@@ -5,4 +5,10 @@ using UnityEngine;
 public class scriptTrash : MonoBehaviour
 {
 	public int value;
+	public bool isCollected;
+
+	private void Awake()
+	{
+		isCollected = false;
+	}
 }
