@@ -180,24 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5599164a1a2815344bac3de5e3f99e67, type: 3}
---- !u!1 &365108678 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8718508345286801190, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
-  m_PrefabInstance: {fileID: 5370724068940403063}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &365108679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365108678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bb90124d6fc3e2409da00537480142b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txtTrashCount: {fileID: 1470664739}
 --- !u!1 &375416150
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,17 +441,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1295140806, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
   m_PrefabInstance: {fileID: 5370724068940403063}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1470664739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1470664739, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
-  m_PrefabInstance: {fileID: 5370724068940403063}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1564336724
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,14 +561,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1295140806, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2386737142305263454, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.031
-      objectReference: {fileID: 0}
     - target: {fileID: 5370724068242719781, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -646,9 +609,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfDerpBoat
       objectReference: {fileID: 0}
-    - target: {fileID: 5370724068658653452, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
-      propertyPath: dashBoard
-      value: 
-      objectReference: {fileID: 365108679}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
