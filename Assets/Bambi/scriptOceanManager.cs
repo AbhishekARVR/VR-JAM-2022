@@ -11,16 +11,26 @@ public class scriptOceanManager : MonoBehaviour
 
 	public float maxViewDist = 10000;
 	public int mapChunkSize = 50;
-	public float oceanPlane; //the y axis plane on which trash should float.
+	[Tooltip("The y axis plane on which trash should float.")]
+	public float oceanPlane;
+	[Tooltip("The maximum number of trash a chunk can contain.")]
 	public int maxTrashQuantity = 5;
+	[Tooltip("The minimum number of trash a chunk can contain.")]
 	public int minTrashQuantity = 1;
-	private int chunksVisibleInViewDist;
-	public GameObject chunkPfab;
+	[Tooltip("How many chunks does the player have to explore before finding a rig.")]
+	public int rigSpawnRate;
+	[Tooltip("How many chunks does the player have to explore before finding a barge.")]
+	public int bargeSpawnRate;
+
+	public GameObject oceanPfab;
+	public GameObject rigPfab;
+	public GameObject bargePfab;
 	public List<GameObject> trashPfabs = new List<GameObject>();
 
 	public Transform player;
 	public static Vector2 playerPos;
 
+	private int chunksVisibleInViewDist;
 	private Dictionary<Vector2, OceanChunk> chunks = new Dictionary<Vector2, OceanChunk>();
 	List<scriptOcean> chunksVisibleLastUpdate = new List<scriptOcean>();
 
@@ -31,7 +41,6 @@ public class scriptOceanManager : MonoBehaviour
 		Rig
 	}
 
-	// Start is called before the first frame update
 	void Start()
     {
 		//validation
@@ -43,9 +52,22 @@ public class scriptOceanManager : MonoBehaviour
 		if (player == null)
 			Debug.LogError("No player refrence assigned.", this);
 
-		if (chunkPfab == null)
+		if (oceanPfab == null)
 			Debug.LogError("No ocean prefab assigned.", this);
 
+		if (rigPfab == null)
+			Debug.LogError("No rig prefab assigned.", this);
+
+		if (bargePfab == null)
+			Debug.LogError("No barge prefab assigned.", this);
+
+		if (rigSpawnRate == 0)
+			Debug.LogError("Rig spawn rate cannot be 0.", this);
+
+		if (bargeSpawnRate == 0)
+			Debug.LogError("Barge spawn rate cannot be 0.", this);
+
+		//initialize values
 		chunksVisibleInViewDist = Mathf.RoundToInt(Mathf.Sqrt(maxViewDist) / mapChunkSize);
 	}
 
@@ -77,18 +99,17 @@ public class scriptOceanManager : MonoBehaviour
 
 				if (chunks.TryGetValue(viewedChunkCoord, out OceanChunk chunk))
 				{
-					chunk.lastViewedChunkCoord = viewedChunkCoord;
-
 					var ocean = chunk.ocean.GetComponent<scriptOcean>();
 
 					//Check if we need to hide the chunk
 					bool isVisible = ocean.UpdateOceanVisibility();
-					UpdateTrashVisibility(isVisible, chunk.trashObjs);
+					UpdateObjectVisibility(isVisible, chunk.objects);
 
 					if (isVisible)
 					{
 						//bob the trash
-						BobTrash(chunk.trashObjs);
+						if (chunk.type == ChunkType.Trash)
+							BobTrash(chunk.objects);
 
 						//add to visible list
 						chunksVisibleLastUpdate.Add(ocean.GetComponent<scriptOcean>());
@@ -99,19 +120,39 @@ public class scriptOceanManager : MonoBehaviour
 					Vector2 pos = viewedChunkCoord * mapChunkSize;
 
 					//Make sure prefab is active before instantiation
-					scriptPrefabManager.Instance.OceanPrefab.SetActive(true);
+					oceanPfab.SetActive(true);
 
-					var ocean = Instantiate(scriptPrefabManager.Instance.OceanPrefab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
+					var ocean = Instantiate(oceanPfab, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
 					var oceanScript = ocean.GetComponent<scriptOcean>();
 
-					var trash = SpawnTrash(oceanScript.InitializeChunk(transform, mapChunkSize));
+					var chunkObjs = SpawnChunkObjects(oceanScript.InitializeChunk(transform, mapChunkSize));
 
-					var newChunk = new OceanChunk { type = ChunkType.Trash, lastViewedChunkCoord = viewedChunkCoord, ocean = ocean, trashObjs = trash };
+					var newChunk = new OceanChunk { type = chunkObjs.type, ocean = ocean, objects = chunkObjs.objs };
 
 					chunks.Add(viewedChunkCoord, newChunk);
 				}
 			}
 		}
+	}
+
+	public (ChunkType type, List<GameObject> objs) SpawnChunkObjects(Bounds bounds)
+	{
+		//check if we should spawn a rig
+		if (chunks.Count % rigSpawnRate == 0)
+			return (ChunkType.Rig, new List<GameObject>()
+			{
+				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)
+			});
+
+		//check if we should spawn a barge
+		if (chunks.Count % bargeSpawnRate == 0)
+			return (ChunkType.Barge, new List<GameObject>()
+			{
+				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)
+			});
+
+		//else spawn trash
+		return (ChunkType.Trash, SpawnTrash(bounds));
 	}
 
 	public List<GameObject> SpawnTrash(Bounds bounds)
@@ -142,15 +183,15 @@ public class scriptOceanManager : MonoBehaviour
 		return chunkTrash;
 	}
 
-	public void UpdateTrashVisibility(bool isVisible, List<GameObject> trashObjs)
+	public void UpdateObjectVisibility(bool isVisible, List<GameObject> objs)
 	{
-		foreach(GameObject trash in trashObjs)
+		foreach(GameObject obj in objs)
 		{
 			//No need to loop through if everyone is already set to the correct value.
-			if (trash.activeSelf == isVisible)
+			if (obj.activeSelf == isVisible)
 				break;
 
-			trash.SetActive(isVisible);
+			obj.SetActive(isVisible);
 		}
 	}
 
@@ -177,18 +218,21 @@ public class scriptOceanManager : MonoBehaviour
 
 		if (chunks.TryGetValue(key, out OceanChunk ocean))
 		{
-			ocean.trashObjs.Remove(trashToRemove);
+			if (ocean.type == ChunkType.Trash)
+				ocean.objects.Remove(trashToRemove);
+			else
+				Debug.LogWarning("Tried to remove trash from a non trash chunk.", trashToRemove);
 		}
+		else
+			Debug.LogError("Could not find the specified chunk.", this);
 	}
 
 	public class OceanChunk
 	{
 		public ChunkType type;
-
-		public Vector2 lastViewedChunkCoord;
-
+		
 		public GameObject ocean;
 
-		public List<GameObject> trashObjs;
+		public List<GameObject> objects;
 	}
 }
