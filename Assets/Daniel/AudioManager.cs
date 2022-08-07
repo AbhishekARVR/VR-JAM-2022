@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioClip background, music, sfx, menuMusic, scavRadio, backgroundBoat, bargeNoise;
+    public AudioClip menuMusic, sailingMusic, scavRadio, backgroundBoat, bargeNoise;
 
 
     [SerializeField] public AudioSource Music1;
@@ -90,51 +90,53 @@ public class AudioManager : MonoBehaviour
 
 
     // references
-    public void StopAllSounds()
-    {
-        Music1.Stop();
-        Music2.Stop();
-        Background1.Stop();
-        Background2.Stop();
-        Sounds.Stop();
-    }
+    //public void StopAllSounds()
+    //{
+    //    Music1.Stop();
+    //    Music2.Stop();
+    //    Background1.Stop();
+    //    Background2.Stop();
+    //    Sounds.Stop();
+    //}
 
-    public void StartNewSceneAudio()
-    {
-        StopAllSounds();
-        PlayMusic();
-        PlayAmbientSounds();
-    }
+    //public void StartNewSceneAudio()
+    //{
+    //    StopAllSounds();
+    //    PlayMusic();
+    //    PlayAmbientSounds();
+    //}
 
-    public void PlayOnlyAmbientSounds()
-    {
-        Music1.Stop();
-        Music2.Stop();
-        Background1.clip = background;
-        Background1.Play();
-    }
+    //public void PlayOnlyAmbientSounds()
+    //{
+    //    Music1.Stop();
+    //    Music2.Stop();
+    //    Background1.clip = background;
+    //    Background1.Play();
+    //}
 
-    public void PlayThisAmbientSound(AudioClip ambientClip)
-    {
-        Background1.clip = ambientClip;
-        Background1.Play();
-    }
-    public void PlayAmbientSounds()
-    {
-        Background1.clip = background;
-        Background1.Play();
-    }
+    //public void PlayThisAmbientSound(AudioClip ambientClip)
+    //{
+    //    Background1.clip = ambientClip;
+    //    Background1.Play();
+    //}
+    //public void PlayAmbientSounds()
+    //{
+    //    Background1.clip = background;
+    //    Background1.Play();
+    //}
 
-    public void PlayThisMusic(AudioClip newSceneMusic)
-    {
-        Music1.clip = newSceneMusic;
-        Music1.Play();
-    }
+    //public void PlayThisMusic(AudioClip newSceneMusic)
+    //{
+    //    Music1.clip = newSceneMusic;
+    //    Music1.Play();
+    //}
 
-    public void PlayMusic()
-    {
-        Music1.clip = music;
-        Music1.Play();
-    }
+    //public void PlayMusic()
+    //{
+    //    Music1.clip = music;
+    //    Music1.Play();
+    //}
+
+
 
 }
