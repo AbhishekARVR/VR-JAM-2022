@@ -7,9 +7,6 @@ public class TogglePauseMenu : MonoBehaviour
 {
     public static TogglePauseMenu Instance;
 
-    public InputActionReference activateMenuRef = null;
-
-
     private void Awake()
     {
         //singleton
@@ -21,17 +18,10 @@ public class TogglePauseMenu : MonoBehaviour
         {
             Destroy(this);
         }
-        // adding the script to button
-        activateMenuRef.action.started += ActivateMenu;
     }
 
-    //removing script to button
-    private void OnDestroy()
-    {
-        activateMenuRef.action.started -= ActivateMenu;
-    }
 
-    private void ActivateMenu(InputAction.CallbackContext context)
+    public void ActivateMenu()
     {
         // toggle menu
         bool isActive = !gameObject.activeSelf;

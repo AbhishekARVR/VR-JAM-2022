@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioClip background, music, sfx;
+    public AudioClip background, music, sfx, menuMusic, scavRadio, backgroundBoat, bargeNoise;
+
 
     [SerializeField] public AudioSource Music1;
     [SerializeField] public AudioSource Music2;
@@ -27,6 +28,68 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
+    /// 
+    /// Menu music on load
+    /// Sailing music as you're cruising, 
+    /// start from pressing start -- stop menu music, play saoiling music
+    /// Radio
+    /// Scan radio has it's own audio source
+    /// Fade out sailing music
+    /// Pause - stop sailing music and play menu music
+    /// 
+
+
+
+    public void PlayStartMusic()
+    {
+        //
+    }
+
+    public void PlayPauseMusic()
+    {
+        //
+    } 
+
+
+
+     public void PlaySound(AudioClip sound)
+    {
+        Sounds.PlayOneShot(sound);
+    }
+
+
+
+
+    public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+    public IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+        audioSource.volume = 0;
+        audioSource.Play();
+        while (audioSource.volume < startVolume)
+        {
+            audioSource.volume += Time.deltaTime * FadeTime;
+
+            yield return null;
+        }
+        audioSource.volume = startVolume;
+    }
+
+
+    // references
     public void StopAllSounds()
     {
         Music1.Stop();
@@ -35,7 +98,7 @@ public class AudioManager : MonoBehaviour
         Background2.Stop();
         Sounds.Stop();
     }
-    
+
     public void StartNewSceneAudio()
     {
         StopAllSounds();
@@ -72,41 +135,6 @@ public class AudioManager : MonoBehaviour
     {
         Music1.clip = music;
         Music1.Play();
-    }
-
-     public void PlaySound(AudioClip sound)
-    {
-        Sounds.PlayOneShot(sound);
-    }
-
-
-
-
-    public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
-    {
-        float startVolume = audioSource.volume;
-        while (audioSource.volume > 0)
-        {
-            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
-
-            yield return null;
-        }
-
-        audioSource.Stop();
-        audioSource.volume = startVolume;
-    }
-    public IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
-    {
-        float startVolume = audioSource.volume;
-        audioSource.volume = 0;
-        audioSource.Play();
-        while (audioSource.volume < startVolume)
-        {
-            audioSource.volume += Time.deltaTime * FadeTime;
-
-            yield return null;
-        }
-        audioSource.volume = startVolume;
     }
 
 }
