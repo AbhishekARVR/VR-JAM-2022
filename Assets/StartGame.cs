@@ -20,5 +20,6 @@ public class StartGame : MonoBehaviour
     public void StartTheGame()
     {
         gameObject.SetActive(false);
+        AudioManager.Instance.TransToSail();
     }
 }

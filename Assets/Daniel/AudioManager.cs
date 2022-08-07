@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioSource Background1;
     [SerializeField] public AudioSource Background2;
     [SerializeField] public AudioSource Sounds;
+    [SerializeField] public float fadetime = 1f;
 
 
     private void Awake()
@@ -46,19 +47,20 @@ public class AudioManager : MonoBehaviour
         //
     }
 
-    public void PlayPauseMusic()
-    {
-        //
-    } 
 
+
+    public void TransToSail()
+    {
+
+        StartCoroutine(FadeOut(Music1, fadetime));
+        StartCoroutine(FadeIn(Music2, fadetime));
+    }
 
 
      public void PlaySound(AudioClip sound)
     {
         Sounds.PlayOneShot(sound);
     }
-
-
 
 
     public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
@@ -125,9 +127,9 @@ public class AudioManager : MonoBehaviour
     //    Background1.Play();
     //}
 
-    //public void PlayThisMusic(AudioClip newSceneMusic)
+    //public void PlayThisMusic(AudioClip sail)
     //{
-    //    Music1.clip = newSceneMusic;
+    //    Music1.clip = sail;
     //    Music1.Play();
     //}
 

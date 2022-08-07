@@ -204,7 +204,7 @@ PrefabInstance:
     - target: {fileID: 2963730889071552952, guid: a91791a84e8d7964ebca106d83628884, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 16792da6a903e414e979a6a94840c0f9, type: 3}
+      objectReference: {fileID: 8300000, guid: de399a6f8dcb31545a98084e7903eca7, type: 3}
     - target: {fileID: 2963730889931627678, guid: a91791a84e8d7964ebca106d83628884, type: 3}
       propertyPath: Loop
       value: 1
@@ -218,6 +218,10 @@ PrefabInstance:
       value: Audio Manager
       objectReference: {fileID: 0}
     - target: {fileID: 2963730891018773194, guid: a91791a84e8d7964ebca106d83628884, type: 3}
+      propertyPath: fadetime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963730891018773194, guid: a91791a84e8d7964ebca106d83628884, type: 3}
       propertyPath: menuMusic
       value: 
       objectReference: {fileID: 8300000, guid: de399a6f8dcb31545a98084e7903eca7, type: 3}
@@ -225,6 +229,10 @@ PrefabInstance:
       propertyPath: scavRadio
       value: 
       objectReference: {fileID: 8300000, guid: c5814e4f7baf2a749baff24fe07f7e3e, type: 3}
+    - target: {fileID: 2963730891018773194, guid: a91791a84e8d7964ebca106d83628884, type: 3}
+      propertyPath: sailingMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 16792da6a903e414e979a6a94840c0f9, type: 3}
     - target: {fileID: 2963730891018773194, guid: a91791a84e8d7964ebca106d83628884, type: 3}
       propertyPath: backgroundBoat
       value: 
@@ -273,6 +281,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2963730891085429757, guid: a91791a84e8d7964ebca106d83628884, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963730891085429757, guid: a91791a84e8d7964ebca106d83628884, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 16792da6a903e414e979a6a94840c0f9, type: 3}
+    - target: {fileID: 2963730891085429757, guid: a91791a84e8d7964ebca106d83628884, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91791a84e8d7964ebca106d83628884, type: 3}
 --- !u!1001 &743096624
@@ -289,6 +309,18 @@ PrefabInstance:
     - target: {fileID: 5370724068242719781, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370724068242719781, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370724068242719781, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370724068242719781, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5370724068242719781, guid: 77adf5a4738a6704d9310364fc850fff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -728,6 +760,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1392102770}
     m_Modifications:
+    - target: {fileID: 4908213780091772598, guid: 1b84458bac2d9ee43a7556765ab0bb59, type: 3}
+      propertyPath: m_text
+      value: "Unable to alter their ways in time, human led climate change has melted
+        the ice caps flooding the world and destroying the coastal cities and large
+        swaths of the interior of the continents. \n\nThe great pacific garbage,
+        originally created through negligent disposal of single use goods and discarded
+        fishing nets, has increased in size, fed by the remants of destroyed cities.\n\nDue
+        to the fallout of the collape, the human population has been greatly reduced.
+        \n\nOut of the ashes a new floating society is emerging and cleaning up the
+        garbage patch. \n\nTrash runners compete to see who can clean up the patch
+        the fastest. \n\nYou must race to clean up as much trash as possible, depositing
+        it at barges and rigs for credits you can use to upgrade your boat."
+      objectReference: {fileID: 0}
     - target: {fileID: 4908213781220798225, guid: 1b84458bac2d9ee43a7556765ab0bb59, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -766,15 +811,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4908213781220798225, guid: 1b84458bac2d9ee43a7556765ab0bb59, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4908213781220798225, guid: 1b84458bac2d9ee43a7556765ab0bb59, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4908213781220798225, guid: 1b84458bac2d9ee43a7556765ab0bb59, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4908213781220798225, guid: 1b84458bac2d9ee43a7556765ab0bb59, type: 3}
       propertyPath: m_LocalPosition.x
