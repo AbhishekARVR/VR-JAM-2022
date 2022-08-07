@@ -7,6 +7,9 @@ public class TogglePauseMenu : MonoBehaviour
 {
     public static TogglePauseMenu Instance;
 
+    [SerializeField] Transform pausePos;
+    [SerializeField] GameObject PauseCanvas;
+
     private void Awake()
     {
         //singleton
@@ -20,11 +23,21 @@ public class TogglePauseMenu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        PauseCanvas.transform.position = pausePos.transform.position;
+    }
+
 
     public void ActivateMenu()
     {
         // toggle menu
         bool isActive = !gameObject.activeSelf;
         gameObject.SetActive(isActive);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

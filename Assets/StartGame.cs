@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StartGame : MonoBehaviour
+
+
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    [SerializeField] Transform pausePos;
+    [SerializeField] GameObject StartCanvas;
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        StartCanvas.transform.position = pausePos.transform.position;
     }
 
     public void StartTheGame()
