@@ -32,7 +32,7 @@ public class scriptOceanManager : MonoBehaviour
 
 	private int chunksVisibleInViewDist;
 	private Dictionary<Vector2, OceanChunk> chunks = new Dictionary<Vector2, OceanChunk>();
-	List<scriptOcean> chunksVisibleLastUpdate = new List<scriptOcean>();
+	List<OceanChunk> chunksVisible = new List<OceanChunk>();
 
 	public enum ChunkType
 	{
@@ -80,17 +80,10 @@ public class scriptOceanManager : MonoBehaviour
 
 	void UpdateChunks()
 	{
-		//hide chunks that were visible
-		foreach (var chunk in chunksVisibleLastUpdate)
-		{
-			chunk.SetVisible(false);
-		}
-		chunksVisibleLastUpdate.Clear();
-
-		//create and update chunks
 		int currentChunkCoordX = Mathf.RoundToInt(playerPos.x / mapChunkSize);
 		int currentChunkCoordY = Mathf.RoundToInt(playerPos.y / mapChunkSize);
 
+		//Create any new chunks we discovered
 		for (int yOffset = -chunksVisibleInViewDist; yOffset <= chunksVisibleInViewDist; yOffset++)
 		{
 			for (int xOffset = -chunksVisibleInViewDist; xOffset <= chunksVisibleInViewDist; xOffset++)
@@ -99,21 +92,8 @@ public class scriptOceanManager : MonoBehaviour
 
 				if (chunks.TryGetValue(viewedChunkCoord, out OceanChunk chunk))
 				{
-					var ocean = chunk.ocean.GetComponent<scriptOcean>();
-
-					//Check if we need to hide the chunk
-					bool isVisible = ocean.UpdateOceanVisibility();
-					UpdateObjectVisibility(isVisible, chunk.objects);
-
-					if (isVisible)
-					{
-						//bob the trash
-						if (chunk.type == ChunkType.Trash)
-							BobTrash(chunk.objects);
-
-						//add to visible list
-						chunksVisibleLastUpdate.Add(ocean.GetComponent<scriptOcean>());
-					}
+					if (!chunksVisible.Contains(chunk)) //then the chunk was previously initialized, hidden, and is now redisplaying.
+						chunksVisible.Add(chunk);
 				}
 				else
 				{
@@ -130,22 +110,53 @@ public class scriptOceanManager : MonoBehaviour
 					var newChunk = new OceanChunk { type = chunkObjs.type, ocean = ocean, objects = chunkObjs.objs };
 
 					chunks.Add(viewedChunkCoord, newChunk);
+
+					chunksVisible.Add(newChunk);
 				}
 			}
+		}
+
+		//Update and clean chunks
+		List<OceanChunk> chunksToRemove = new List<OceanChunk>();
+
+		foreach(OceanChunk chunk in chunksVisible)
+		{
+			var ocean = chunk.ocean.GetComponent<scriptOcean>();
+
+			//Check if we need to hide the chunk
+			bool isVisible = ocean.UpdateOceanVisibility();
+			UpdateObjectVisibility(isVisible, chunk.objects);
+
+			if (isVisible) //then do object activities
+			{
+				//bob the trash
+				if (chunk.type == ChunkType.Trash)
+					BobTrash(chunk.objects);
+			}
+			else
+			{
+				chunksToRemove.Add(chunk);
+			}
+		}
+
+		//Remove chunks no longer visible
+		foreach(var chunk in chunksToRemove)
+		{
+			chunksVisible.Remove(chunk);
 		}
 	}
 
 	public (ChunkType type, List<GameObject> objs) SpawnChunkObjects(Bounds bounds)
 	{
 		//check if we should spawn a rig
-		if (chunks.Count % rigSpawnRate == 0)
+		if (chunks.Count > 0 && chunks.Count % rigSpawnRate == 0)
 			return (ChunkType.Rig, new List<GameObject>()
 			{
 				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)
 			});
 
 		//check if we should spawn a barge
-		if (chunks.Count % bargeSpawnRate == 0)
+		if (chunks.Count > 0 && chunks.Count % bargeSpawnRate == 0)
 			return (ChunkType.Barge, new List<GameObject>()
 			{
 				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)

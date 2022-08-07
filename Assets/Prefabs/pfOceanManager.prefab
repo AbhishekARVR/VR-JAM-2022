@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7347284249159260047}
   - component: {fileID: 7347284249159260033}
   m_Layer: 0
-  m_Name: OceanManager
+  m_Name: pfOceanManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,8 +48,9 @@ MonoBehaviour:
   oceanPlane: 0.1
   maxTrashQuantity: 10
   minTrashQuantity: 5
-  rigSpawnRate: 100
-  bargeSpawnRate: 25
+  rigSpawnRate: 200
+  bargeSpawnRate: 50
+  updateChunksV2: 1
   oceanPfab: {fileID: 5464413488879633011, guid: 1026ad2f301aeb644ac185727fb3a4b8, type: 3}
   rigPfab: {fileID: 7892833017326923027, guid: c0c6f188e3ca8b44dac9efe8723112c9, type: 3}
   bargePfab: {fileID: 8313584039578612811, guid: 5599164a1a2815344bac3de5e3f99e67, type: 3}
