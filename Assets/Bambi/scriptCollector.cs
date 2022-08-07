@@ -43,6 +43,8 @@ public class scriptCollector : MonoBehaviour
 			//Remove the y constaint so it can fall into the trash basket.
 			curRb.constraints = RigidbodyConstraints.None;
 			curRb.useGravity = true;
+			curRb.velocity = Vector3.zero;
+			curRb.angularVelocity = Vector3.zero;
 		}
 		else //add a rigidbody
 		{
@@ -87,7 +89,7 @@ public class scriptCollector : MonoBehaviour
 			collectedTrash.Add(trashObj);
 
 			//Update Dash UI
-			dashBoard.updateTrashCount(collectedTrash.Count);
+			dashBoard.updateTrashAmount(collectedTrash.Count);
 		}
 		else
 		{

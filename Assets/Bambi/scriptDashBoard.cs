@@ -5,24 +5,27 @@ using UnityEngine.UI;
 
 public class scriptDashBoard : MonoBehaviour
 {
-	public Text txtTrashCount;
+	public Text txtTrashAmount;
+	public Text txtFuelAmount;
 
 	// Start is called before the first frame update
 	void Start()
     {
 		//validation
-		if (txtTrashCount == null)
-			Debug.LogError("Missing trash count text reference.", this);
-    }
+		if (txtTrashAmount == null)
+			Debug.LogError("Missing trash amount text reference.", this);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		if (txtFuelAmount == null)
+			Debug.LogError("Missing fuel amount text reference.", this);
+	}
 
-	public void updateTrashCount(int trashCount)
+	public void updateTrashAmount(int trashCount)
 	{
-		txtTrashCount.text = $"Trash: {trashCount}";
+		txtTrashAmount.text = $"Trash: {trashCount}";
+	}
+
+	public void updateFuelAmount(int trashCount)
+	{
+		txtTrashAmount.text = $"Trash: {trashCount}";
 	}
 }
