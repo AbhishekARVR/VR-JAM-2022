@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trash
   - Boat
+  - Radio
   layers:
   - Default
   - TransparentFX
