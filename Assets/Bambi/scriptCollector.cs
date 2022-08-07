@@ -54,6 +54,9 @@ public class scriptCollector : MonoBehaviour
 	//coroutines
 	private IEnumerator processTrash(GameObject trashObj)
 	{
+		//Remove trash from chunk
+		scriptOceanManager.Instance.RemoveCollectedTrash(trashObj.transform.position, trashObj);
+		
 		//Turn the trash obj off
 		trashObj.SetActive(false);
 
@@ -87,6 +90,8 @@ public class scriptCollector : MonoBehaviour
 			dashBoard.updateTrashCount(collectedTrash.Count);
 		}
 		else
+		{
 			Destroy(trashObj);
+		}
 	}
 }

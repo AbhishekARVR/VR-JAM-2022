@@ -6,19 +6,14 @@ public class scriptOceanBob : MonoBehaviour
 {
 	public float range;
 	public float speed;
-	public float offset;
 
-	private float initialY;
+	private float offset;
 
     //Start is called before the first frame update
     private void Start()
     {
-		initialY = transform.localPosition.y;
-
 		//Offset the bob so trash isn't bobbing uniformly... creepy @-@
 		offset = Random.Range(0f, 6.5f);
-
-        initialY = transform.localPosition.y;
 
 		DoTheBob();
 	}
@@ -31,7 +26,7 @@ public class scriptOceanBob : MonoBehaviour
 
     public void DoTheBob()
     {
-        float y = initialY + ((Mathf.Sin(Time.time * speed + offset)) * range);
+        float y = scriptOceanManager.Instance.oceanPlane + ((Mathf.Sin(Time.time * speed + offset)) * range);
 		transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
     }
 }

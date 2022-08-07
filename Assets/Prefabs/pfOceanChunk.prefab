@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5464413488879633015}
   - component: {fileID: 5464413488879633014}
   - component: {fileID: 5464413488879633013}
-  - component: {fileID: 5464413488879633012}
   - component: {fileID: 7545070080644853817}
   m_Layer: 0
   m_Name: pfOceanChunk
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5464413488879633012
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464413488879633011}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &7545070080644853817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,9 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfabsTrash:
-  - {fileID: 5313756401031118541, guid: df8bf320db40fd04ab6307db0ef1dcb3, type: 3}
   - {fileID: 5313756401031118541, guid: c5f20caed651b4487939fc14c1982d6f, type: 3}
-  - {fileID: 5313756401031118541, guid: c3afb8a61108a4bb3bfcda78e15ac5eb, type: 3}
+  - {fileID: 5313756401031118541, guid: 46535465749bc04468a32629144b89ea, type: 3}
+  - {fileID: 5313756401031118541, guid: 2be317b53c98a574bb440b3a5357e29d, type: 3}
+  - {fileID: 5313756401031118541, guid: dc34c63214d4f3f4a97838d1d44000aa, type: 3}
+  - {fileID: 5313756401031118541, guid: 484fde5d071d4ed4aae24a54c746b655, type: 3}
+  - {fileID: 5313756401031118541, guid: 9f8817953b7706345b52902c457c7a45, type: 3}
+  - {fileID: 5313756401031118541, guid: 69c56c31456754a4b9333a23e58b7f7c, type: 3}
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1001 &3075308361242835423
 PrefabInstance:
   m_ObjectHideFlags: 0
