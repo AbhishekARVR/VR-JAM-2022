@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 747010586}
   - component: {fileID: 747010585}
   - component: {fileID: 747010584}
+  - component: {fileID: 1498318296}
   m_Layer: 0
   m_Name: ChuteZone
   m_TagString: Untagged
@@ -94,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 3.4443567, z: 10.000004}
-  m_Center: {x: -0.0000022193694, y: 1.7021785, z: 0.0000002029137}
+  m_Size: {x: 10, y: 1.507248, z: 10.000004}
+  m_Center: {x: -0.000002062951, y: -0.7537196, z: 0.00000034382464}
 --- !u!114 &747010584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,8 +109,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44ed68596de2c84385fac745a058217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  suckPower: 5
   trashSucker: {fileID: 7303204458733752070}
+--- !u!135 &1498318296
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747010582}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.45
+  m_Center: {x: -0.000007794842, y: 9.18, z: 0.9675796}
 --- !u!1 &216066761106448400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,11 +1434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5777891149382815862, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: updateFuelAmount
+      value: buySomething
       objectReference: {fileID: 0}
     - target: {fileID: 5777891149382815862, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: scriptDashBoard, Assembly-CSharp
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5777891149382815862, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument

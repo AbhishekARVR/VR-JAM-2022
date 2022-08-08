@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class scriptTrashChute : MonoBehaviour
 {
-	public float speed;
+	public float suckPower;
 	public GameObject trashSucker;
 
 	private Animator trashSuckerAnim;
 	private AudioSource oneShots;
 	private AudioSource loop;
+	
+	List<Rigidbody> trashRBs = new List<Rigidbody>();
 
 	//coroutines
 	private IEnumerator suctionTrashRoutine;
@@ -34,11 +36,23 @@ public class scriptTrashChute : MonoBehaviour
 		{
 			Debug.Log("Entering trash suction zone.");
 
+			var test = other.GetComponentInChildren<scriptCollector>();
+
 			//get trash amount on player
-			//suctionTrashRoutine = SuctionTrashRoutine(GameManger.trashAmount);
-			suctionTrashRoutine = SuctionTrashRoutine(10);
+			suctionTrashRoutine = SuctionTrashRoutine(test.collectedTrash);
 
 			StartCoroutine(suctionTrashRoutine);
+		}
+
+		if (other.CompareTag("Trash"))
+		{
+			var trash = other.GetComponent<scriptTrash>();
+
+			GameManager.Instance.updatePlayerFunds(trash.value);
+
+			trashRBs.Remove(other.GetComponent<Rigidbody>());
+
+			Destroy(other.gameObject);
 		}
 	}
 
@@ -64,7 +78,7 @@ public class scriptTrashChute : MonoBehaviour
 	}
 
 	//coroutines
-	private IEnumerator SuctionTrashRoutine(int trashCount)
+	private IEnumerator SuctionTrashRoutine(List<GameObject> trashObjs)
 	{
 		//Play start up sound, wait the duration of the clip length
 		oneShots.PlayOneShot(AudioManager.Instance.trashSuckerStartUp);
@@ -77,15 +91,25 @@ public class scriptTrashChute : MonoBehaviour
 		loop.clip = AudioManager.Instance.trashSuckerRunning;
 		loop.Play();
 
-		//Suck trash
-		while (trashCount > 0)
+		//prepare to suck trash
+		foreach (GameObject trash in trashObjs)
 		{
-			trashCount--;
-			Debug.Log(trashCount);
+			var rb = trash.GetComponent<Rigidbody>();
+			rb.isKinematic = false;
+			rb.useGravity = false;
+			trashRBs.Add(rb);
+		}
 
-			//Add money to player
+		//Suck trash
+		while (trashRBs.Count > 0)
+		{
+			foreach(Rigidbody rb in trashRBs)
+			{
+				Vector3 diff = trashSucker.transform.position - rb.transform.position;
+				rb.AddForce(diff * suckPower);
+			}
 
-			yield return new WaitForSeconds(speed);
+			yield return null;
 		}
 
 		//Stop jiggle animation

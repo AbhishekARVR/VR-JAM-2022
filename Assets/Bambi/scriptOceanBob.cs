@@ -15,7 +15,7 @@ public class scriptOceanBob : MonoBehaviour
 		//Offset the bob so trash isn't bobbing uniformly... creepy @-@
 		offset = Random.Range(0f, 6.5f);
 
-		DoTheBob();
+		//DoTheBob();
 	}
 
     //Update is called once per frame

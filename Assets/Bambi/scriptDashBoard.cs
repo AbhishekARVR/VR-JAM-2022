@@ -7,6 +7,7 @@ public class scriptDashBoard : MonoBehaviour
 {
 	public Text txtTrashAmount;
 	public Text txtFuelAmount;
+	public Text txtFundsAmount;
 
 	// Start is called before the first frame update
 	void Start()
@@ -17,6 +18,9 @@ public class scriptDashBoard : MonoBehaviour
 
 		if (txtFuelAmount == null)
 			Debug.LogError("Missing fuel amount text reference.", this);
+
+		if (txtFundsAmount == null)
+			Debug.LogError("Missing funds amount text reference.", this);
 	}
 
 	public void updateTrashAmount(int trashCount)
@@ -27,5 +31,10 @@ public class scriptDashBoard : MonoBehaviour
 	public void updateFuelAmount(int trashCount)
 	{
 		txtTrashAmount.text = $"Trash: {trashCount}";
+	}
+
+	public void updateFundsAmount(int fundsAmount)
+	{
+		txtFundsAmount.text = $"Funds: {fundsAmount}";
 	}
 }

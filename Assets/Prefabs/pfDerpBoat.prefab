@@ -4509,6 +4509,7 @@ MonoBehaviour:
   trashDumpPoint: {fileID: 1600060301599321775}
   tubeTime: 1
   settleTime: 2
+  collectedTrash: []
 --- !u!1 &5370724068762109176
 GameObject:
   m_ObjectHideFlags: 0
@@ -6524,6 +6525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtTrashAmount: {fileID: 1470664739}
   txtFuelAmount: {fileID: 607273859}
+  txtFundsAmount: {fileID: 0}
 --- !u!1001 &1545270020351201962
 PrefabInstance:
   m_ObjectHideFlags: 0

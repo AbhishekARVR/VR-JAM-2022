@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+	public scriptDashBoard dash;
+
+	public int playerFunds = 0;
+
     private void Awake()
     {
         //singleton
@@ -22,7 +26,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		//validation
+		var dashObj = GameObject.FindGameObjectWithTag("Dash");
 
+		if (dashObj == null)
+			Debug.LogError("No dash object found in scene.", this);
+		else
+			dash = dashObj.GetComponent<scriptDashBoard>();
     }
 
     // Update is called once per frame
@@ -30,8 +40,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
-
 
     public void PauseGame()
     {
@@ -43,8 +51,19 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void updatePlayerFunds(int value)
+	{
+		playerFunds += value;
 
-    // game states: start, sailing, paused
+		//Update Dash UI
+		dash.updateFundsAmount(playerFunds);
+	}
 
-
+	public void buySomething(int cost)
+	{
+		if (playerFunds >= cost)
+		{
+			updatePlayerFunds(-(cost));
+		}
+	}
 }

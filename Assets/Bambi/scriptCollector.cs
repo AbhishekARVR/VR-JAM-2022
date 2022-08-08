@@ -8,8 +8,10 @@ public class scriptCollector : MonoBehaviour
 	public Transform trashDumpPoint; //point trash will try to fall into trash basket
 	public float tubeTime; //time it takes to get down the tube
 	public float settleTime; //how long to keep the rigidbody active to settle trash into place
+	public float tubeExitForce;
+	public Vector3 tubeExitDirection;
 
-	private List<GameObject> collectedTrash;
+	public List<GameObject> collectedTrash;
 
 	private void Start()
 	{
@@ -73,6 +75,7 @@ public class scriptCollector : MonoBehaviour
 
 		//Dump trash
 		trashObj.SetActive(true);
+		trashObj.GetComponent<Rigidbody>().AddForce(tubeExitDirection * tubeExitForce);
 
 		//Wait for trash to settle
 		yield return new WaitForSeconds(settleTime);
