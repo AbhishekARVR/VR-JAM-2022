@@ -4768,7 +4768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5777891149382815862, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: buySomething
+      value: buyFuel
       objectReference: {fileID: 0}
     - target: {fileID: 5777891149382815862, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

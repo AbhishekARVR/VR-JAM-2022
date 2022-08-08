@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	public scriptDashBoard dash;
 
 	public int playerFunds = 0;
+	public int trashCount = 0;
 
     private void Awake()
     {
@@ -51,6 +52,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+	public void removeTrash(int amountToRemove)
+	{
+		dash.updateTrashAmount(trashCount - amountToRemove);
+	}
+
     public void updatePlayerFunds(int value)
 	{
 		playerFunds += value;
@@ -59,11 +65,18 @@ public class GameManager : MonoBehaviour
 		dash.updateFundsAmount(playerFunds);
 	}
 
-	public void buySomething(int cost)
+    public void updateFuel(int value)
+	{
+		//Update Dash UI
+		dash.updateFuelAmount(value);
+	}
+
+	public void buyFuel(int cost)
 	{
 		if (playerFunds >= cost)
 		{
 			updatePlayerFunds(-(cost));
+			updateFuel(100);
 		}
 	}
 }

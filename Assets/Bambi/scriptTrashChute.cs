@@ -91,6 +91,9 @@ public class scriptTrashChute : MonoBehaviour
 		loop.clip = AudioManager.Instance.trashSuckerRunning;
 		loop.Play();
 
+		//Update UI
+		GameManager.Instance.removeTrash(trashObjs.Count);
+
 		//prepare to suck trash
 		foreach (GameObject trash in trashObjs)
 		{

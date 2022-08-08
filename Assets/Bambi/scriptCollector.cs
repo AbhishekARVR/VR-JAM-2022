@@ -90,6 +90,7 @@ public class scriptCollector : MonoBehaviour
 
 			//Add trash to trashCollection
 			collectedTrash.Add(trashObj);
+			GameManager.Instance.trashCount++;
 
 			//Update Dash UI
 			dashBoard.updateTrashAmount(collectedTrash.Count);
