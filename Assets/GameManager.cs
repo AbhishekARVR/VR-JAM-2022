@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
 
 	public int playerFunds = 0;
 	public int trashCount = 0;
+	public float fuelLevel = 100f;
+	public float maxFuel = 100f;
 
-    private void Awake()
+	private void Awake()
     {
         //singleton
         if (Instance == null)
@@ -65,15 +67,23 @@ public class GameManager : MonoBehaviour
 		dash.updateFundsAmount(playerFunds);
 	}
 
-    public void updateFuel(int value)
+    public void updateFuel(float value)
 	{
 		//Update Dash UI
 		dash.updateFuelAmount(value);
 	}
 
+    public void useFuel(float value)
+	{
+		fuelLevel -= value;
+
+		//Update Dash UI
+		dash.updateFuelAmount(fuelLevel);
+	}
+
 	public void buyFuel(int cost)
 	{
-		if (playerFunds >= cost)
+		if (playerFunds >= cost && fuelLevel < maxFuel)
 		{
 			updatePlayerFunds(-(cost));
 			updateFuel(100);

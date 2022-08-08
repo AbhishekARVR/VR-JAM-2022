@@ -28,7 +28,7 @@ public class scriptDashBoard : MonoBehaviour
 		txtTrashAmount.text = $"Trash: {trashCount}";
 	}
 
-	public void updateFuelAmount(int fuelCount)
+	public void updateFuelAmount(float fuelCount)
 	{
 		txtTrashAmount.text = $"Fuel: {fuelCount}";
 	}

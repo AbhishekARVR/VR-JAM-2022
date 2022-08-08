@@ -14,9 +14,6 @@ public class BoatController : MonoBehaviour
     [Range(-1f, 1f)] 
     [SerializeField] private float steering;
     
-    
-
-    public float fuelCounter, maxFuel = 100f;
     public int trashCounter;
     
     private void Awake()
@@ -36,7 +33,7 @@ public class BoatController : MonoBehaviour
         float y = (initialYPosition + (Mathf.Sin(Time.time * buoyancyBobSpeed)) * buoyancyBobRange);
         transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
 
-        if (fuelCounter != 0)
+        if (GameManager.Instance.fuelLevel != 0)
         {
             float thrustRotation;
 
@@ -74,19 +71,20 @@ public class BoatController : MonoBehaviour
         else
         {
             CancelInvoke(nameof(ReduceFuel));
-            fuelCounter = 0f;
+			GameManager.Instance.fuelLevel = 0f;
         }
     }
 
     private void ReduceFuel()
     {
-        fuelCounter -= 0.2f;
+        GameManager.Instance.useFuel(0.2f);
     }
 
-    public void Refuel(int fuelAMount)
-    {
-        fuelCounter = fuelAMount;
-    }
+	//Handled at the game manger level
+    //public void Refuel(int fuelAMount)
+    //{
+    //    fuelCounter = fuelAMount;
+    //}
 
     public void AddTrashValue(int trashValue)
     {
