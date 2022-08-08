@@ -9,7 +9,6 @@ public class scriptCollector : MonoBehaviour
 	public float tubeTime; //time it takes to get down the tube
 	public float settleTime; //how long to keep the rigidbody active to settle trash into place
 	public float tubeExitForce;
-	public Vector3 tubeExitDirection;
 
 	public List<GameObject> collectedTrash;
 
@@ -31,6 +30,16 @@ public class scriptCollector : MonoBehaviour
 		{
 			Debug.Log("Got trash.");
 			
+			StartCoroutine("processTrash", collision.gameObject);
+		}
+	}
+
+	private void OnTriggerEnter(Collider collision)
+	{
+		if (collision.gameObject.CompareTag("Trash"))
+		{
+			Debug.Log("Got trash.");
+
 			StartCoroutine("processTrash", collision.gameObject);
 		}
 	}
@@ -77,7 +86,7 @@ public class scriptCollector : MonoBehaviour
 
 		//Dump trash
 		trashObj.SetActive(true);
-		trashObj.GetComponent<Rigidbody>().AddForce(tubeExitDirection * tubeExitForce);
+		trashObj.GetComponent<Rigidbody>().AddForce(-transform.up * tubeExitForce); //assuming spout is on the left side of the boat facing in.
 
 		//Wait for trash to settle
 		yield return new WaitForSeconds(settleTime);
