@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioSource Background2;
     [SerializeField] public AudioSource Sounds;
     [SerializeField] public float fadetime = 1f;
+    [SerializeField] public float radiofadetime = 5f;
 
 
     private void Awake()
@@ -56,8 +57,19 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeIn(Music2, fadetime));
     }
 
+    public void FadeScavIn()
+    {
+        StartCoroutine(FadeOut(Music2, radiofadetime));
+    }
 
-     public void PlaySound(AudioClip sound)
+    public void FadeScavOut()
+    {
+        StartCoroutine(FadeIn(Music2, radiofadetime));
+    }
+
+
+
+    public void PlaySound(AudioClip sound)
     {
         Sounds.PlayOneShot(sound);
     }

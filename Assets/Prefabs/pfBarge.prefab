@@ -369,6 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8313584039578612810}
   - component: {fileID: 8708159545648583554}
+  - component: {fileID: 2179838068306940088}
   m_Layer: 0
   m_Name: pfBarge
   m_TagString: Radio
@@ -404,6 +405,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2179838068306940088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313584039578612811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d542c7b062821864591479abc3a1c40d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &482578205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1427,14 +1440,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
---- !u!4 &2454980381852176467 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 862212665224123125, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
-  m_PrefabInstance: {fileID: 3019354036443595430}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5337164123888716467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7203380069103061013, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
+  m_PrefabInstance: {fileID: 3019354036443595430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2454980381852176467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 862212665224123125, guid: d3084471e60219e40b19d5c459e26bc7, type: 3}
   m_PrefabInstance: {fileID: 3019354036443595430}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &139187476
@@ -2551,35 +2564,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 64192234104553414, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
---- !u!4 &7301424637627584856 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4360797459827778, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
-  m_PrefabInstance: {fileID: 7303889831943478554}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7303204458733752070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1848108913512988, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
   m_PrefabInstance: {fileID: 7303889831943478554}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1251817034
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &7301424637627584856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4360797459827778, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
+  m_PrefabInstance: {fileID: 7303889831943478554}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7303204458733752070}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5479c5689daf71345b0cf930db843f04, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &1574233957
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2772,6 +2766,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1251817034
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7303204458733752070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5479c5689daf71345b0cf930db843f04, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7655586623193155978
 PrefabInstance:
   m_ObjectHideFlags: 0
