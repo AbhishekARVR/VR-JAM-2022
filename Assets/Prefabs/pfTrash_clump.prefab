@@ -55,7 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6aad47926e788241a9a993c2888aba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1
+  isCollected: 0
 --- !u!65 &5313756401031118540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83,7 +84,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 0.1
   speed: 5
-  offset: 0.01
 --- !u!1001 &4741137498789285010
 PrefabInstance:
   m_ObjectHideFlags: 0

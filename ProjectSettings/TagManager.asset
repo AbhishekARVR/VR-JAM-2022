@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trash
   - Boat
+  - GarbageCollector
   layers:
   - Default
   - TransparentFX
@@ -15,9 +16,9 @@ TagManager:
   - UI
   - Trash
   - Ocean
-  - 
-  - 
-  - 
+  - Boat
+  - Grab ray ignore
+  - GarbageCollector
   - 
   - 
   - 
