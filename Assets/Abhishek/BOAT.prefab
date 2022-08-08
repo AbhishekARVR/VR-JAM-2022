@@ -646,8 +646,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1773986, y: 2.128543, z: 0.7052004}
-  m_Center: {x: 0.03760651, y: 1.0109173, z: -0.026231153}
+  m_Size: {x: 0.7464938, y: 1.0067903, z: 0.7052004}
+  m_Center: {x: 0.019845348, y: 0.59216154, z: -0.026231155}
 --- !u!114 &255019885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2226,6 +2226,7 @@ MonoBehaviour:
   tubeTime: 1
   settleTime: 2
   tubeExitForce: 150
+  trashZone: {fileID: 255019886}
   collectedTrash: []
 --- !u!1 &888394101
 GameObject:
@@ -5986,7 +5987,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.005
+    widthMultiplier: 0.02
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -5997,8 +5998,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -6377,7 +6387,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.005
+    widthMultiplier: 0.02
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -6388,8 +6398,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

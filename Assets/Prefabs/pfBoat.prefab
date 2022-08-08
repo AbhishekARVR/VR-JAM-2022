@@ -4387,7 +4387,7 @@ MonoBehaviour:
   tubeTime: 1
   settleTime: 2
   tubeExitForce: 150
-  tubeExitDirection: {x: 0, y: 0, z: 1}
+  trashZone: {fileID: 0}
   collectedTrash: []
 --- !u!1 &5411562021592240566
 GameObject:

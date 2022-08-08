@@ -80,6 +80,19 @@ public class scriptTrashChute : MonoBehaviour
 	//coroutines
 	private IEnumerator SuctionTrashRoutine(List<GameObject> trashObjs)
 	{
+		//Clear out any dead references
+		List<GameObject> trashToRemove = new List<GameObject>();
+		foreach (var trash in trashObjs)
+		{
+			if (trash == null)
+				trashToRemove.Add(trash);
+		}
+		foreach(var trash in trashToRemove)
+		{
+			Debug.Log("Removing old trash reference.", this);
+			trashObjs.Remove(trash);
+		}
+		
 		//Play start up sound, wait the duration of the clip length
 		oneShots.PlayOneShot(AudioManager.Instance.trashSuckerStartUp);
 		yield return new WaitForSeconds(AudioManager.Instance.trashSuckerStartUp.length);

@@ -9,6 +9,7 @@ public class scriptCollector : MonoBehaviour
 	public float tubeTime; //time it takes to get down the tube
 	public float settleTime; //how long to keep the rigidbody active to settle trash into place
 	public float tubeExitForce;
+	public BoxCollider trashZone;
 
 	public List<GameObject> collectedTrash;
 
@@ -28,7 +29,7 @@ public class scriptCollector : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Trash"))
 		{
-			Debug.Log("Got trash.");
+			//Debug.Log("Got trash.");
 			
 			StartCoroutine("processTrash", collision.gameObject);
 		}
@@ -38,7 +39,7 @@ public class scriptCollector : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Trash"))
 		{
-			Debug.Log("Got trash.");
+			//Debug.Log("Got trash.");
 
 			StartCoroutine("processTrash", collision.gameObject);
 		}
@@ -55,14 +56,16 @@ public class scriptCollector : MonoBehaviour
 		{
 			//Remove the y constaint so it can fall into the trash basket.
 			curRb.constraints = RigidbodyConstraints.None;
-			curRb.useGravity = true;
+			curRb.isKinematic = true;
+			curRb.useGravity = false;
 			curRb.velocity = Vector3.zero;
 			curRb.angularVelocity = Vector3.zero;
 		}
 		else //add a rigidbody
 		{
 			var newRb = trashObj.AddComponent<Rigidbody>();
-			newRb.useGravity = true;
+			newRb.isKinematic = true;
+			newRb.useGravity = false;
 		}
 	}
 
@@ -86,29 +89,38 @@ public class scriptCollector : MonoBehaviour
 
 		//Dump trash
 		trashObj.SetActive(true);
-		trashObj.GetComponent<Rigidbody>().AddForce(-transform.up * tubeExitForce); //assuming spout is on the left side of the boat facing in.
+
+		//Place randomly within the trash dump zone, so it doesn't disrupt the boat
+		trashObj.transform.position = new Vector3(
+			Random.Range(trashZone.bounds.min.x, trashZone.bounds.max.x),
+			Random.Range(trashZone.bounds.min.y, trashZone.bounds.max.y),
+			Random.Range(trashZone.bounds.min.z, trashZone.bounds.max.z)
+		);
+
+		//Apply a little launching force
+		//trashObj.GetComponent<Rigidbody>().AddForce(-transform.up * tubeExitForce); //assuming spout is on the left side of the boat facing in.
 
 		//Wait for trash to settle
-		yield return new WaitForSeconds(settleTime);
+		//yield return new WaitForSeconds(settleTime);
 
 		//If we landed in the basked, cool turn off physics, if not destory the object.
 		//Gives us a fun way to limit the amount of trash, without just having to set a specific trash limit.
-		var trash = trashObj.GetComponent<scriptTrash>();
+		//var trash = trashObj.GetComponent<scriptTrash>();
 
-		if (trash.isCollected)
-		{
-			trashObj.GetComponent<Rigidbody>().isKinematic = true;
+		//if (trash.isCollected)
+		//{
+		//	trashObj.GetComponent<Rigidbody>().isKinematic = true;
 
-			//Add trash to trashCollection
+		//	//Add trash to trashCollection
 			collectedTrash.Add(trashObj);
-			GameManager.Instance.trashCount++;
+		//	GameManager.Instance.trashCount++;
 
-			//Update Dash UI
-			dashBoard.updateTrashAmount(collectedTrash.Count);
-		}
-		else
-		{
-			Destroy(trashObj);
-		}
+		//	//Update Dash UI
+		//	dashBoard.updateTrashAmount(collectedTrash.Count);
+		//}
+		//else
+		//{
+		//	Destroy(trashObj);
+		//}
 	}
 }

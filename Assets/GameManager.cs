@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour
 		dash.updateFuelAmount(fuelLevel);
 	}
 
+	/// <summary>
+	/// Top off the tank and charge the player.
+	/// </summary>
+	/// <param name="cost"></param>
 	public void buyFuel(int cost)
 	{
 		if (playerFunds >= cost && fuelLevel < maxFuel)
