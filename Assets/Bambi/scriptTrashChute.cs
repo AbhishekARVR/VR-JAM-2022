@@ -8,6 +8,8 @@ public class scriptTrashChute : MonoBehaviour
 	public GameObject trashSucker;
 
 	private Animator trashSuckerAnim;
+	private AudioSource oneShots;
+	private AudioSource loop;
 
 	//coroutines
 	private IEnumerator suctionTrashRoutine;
@@ -20,6 +22,10 @@ public class scriptTrashChute : MonoBehaviour
 
 		trashSuckerAnim = trashSucker.GetComponent<Animator>();
 		trashSuckerAnim.speed = 0;
+
+		var aScrs = trashSucker.GetComponents<AudioSource>();
+		loop = aScrs[0];
+		oneShots = aScrs[1];
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -52,7 +58,8 @@ public class scriptTrashChute : MonoBehaviour
 			trashSuckerAnim.speed = 0;
 
 			//Play die down sound effect
-
+			oneShots.PlayOneShot(AudioManager.Instance.trashSuckerSpinDown);
+			loop.Stop();
 		}
 	}
 
@@ -60,12 +67,15 @@ public class scriptTrashChute : MonoBehaviour
 	private IEnumerator SuctionTrashRoutine(int trashCount)
 	{
 		//Play start up sound, wait the duration of the clip length
-		yield return new WaitForSeconds(3);
+		oneShots.PlayOneShot(AudioManager.Instance.trashSuckerStartUp);
+		yield return new WaitForSeconds(AudioManager.Instance.trashSuckerStartUp.length);
 
 		//Start jiggle animation
 		trashSuckerAnim.speed = 3; //3 seems good?
 
 		//Start audio
+		loop.clip = AudioManager.Instance.trashSuckerRunning;
+		loop.Play();
 
 		//Suck trash
 		while (trashCount > 0)
@@ -80,6 +90,11 @@ public class scriptTrashChute : MonoBehaviour
 
 		//Stop jiggle animation
 		trashSuckerAnim.speed = 0;
+
+		//Stop the audio
+		oneShots.PlayOneShot(AudioManager.Instance.trashSuckerSpinDown);
+		loop.Stop();
+		yield return new WaitForSeconds(AudioManager.Instance.trashSuckerSpinDown.length);
 
 		Debug.Log("Done taking trash.");
 
