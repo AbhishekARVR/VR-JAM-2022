@@ -30,7 +30,7 @@ public class scriptDashBoard : MonoBehaviour
 
 	public void updateFuelAmount(float fuelCount)
 	{
-		txtTrashAmount.text = $"Fuel: {fuelCount}";
+		txtFuelAmount.text = $"Fuel: {fuelCount}";
 	}
 
 	public void updateFundsAmount(int fundsAmount)
