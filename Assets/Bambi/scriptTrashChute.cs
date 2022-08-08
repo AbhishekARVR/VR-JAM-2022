@@ -5,9 +5,22 @@ using UnityEngine;
 public class scriptTrashChute : MonoBehaviour
 {
 	public float speed;
+	public GameObject trashSucker;
+
+	private Animator trashSuckerAnim;
 
 	//coroutines
 	private IEnumerator suctionTrashRoutine;
+
+	private void Start()
+	{
+		//validation
+		if (trashSucker == null)
+			Debug.LogError("No trash sucker assigned.", this);
+
+		trashSuckerAnim = trashSucker.GetComponent<Animator>();
+		trashSuckerAnim.speed = 0;
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -30,7 +43,13 @@ public class scriptTrashChute : MonoBehaviour
 			Debug.Log("Exiting trash suction zone.");
 
 			if (suctionTrashRoutine != null)
+			{
 				StopCoroutine(suctionTrashRoutine);
+				suctionTrashRoutine = null;
+			}
+			
+			//Stop jiggle animation
+			trashSuckerAnim.speed = 0;
 
 			//Play die down sound effect
 
@@ -43,6 +62,11 @@ public class scriptTrashChute : MonoBehaviour
 		//Play start up sound, wait the duration of the clip length
 		yield return new WaitForSeconds(3);
 
+		//Start jiggle animation
+		trashSuckerAnim.speed = 3; //3 seems good?
+
+		//Start audio
+
 		//Suck trash
 		while (trashCount > 0)
 		{
@@ -53,6 +77,9 @@ public class scriptTrashChute : MonoBehaviour
 
 			yield return new WaitForSeconds(speed);
 		}
+
+		//Stop jiggle animation
+		trashSuckerAnim.speed = 0;
 
 		Debug.Log("Done taking trash.");
 
