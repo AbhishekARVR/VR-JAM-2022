@@ -49,8 +49,9 @@ public class scriptOceanManager : MonoBehaviour
 		else
 			Debug.LogError("An ocean manager already exists in the scene!", Instance);
 
-		if (player == null)
-			Debug.LogError("No player refrence assigned.", this);
+		var playerObj = GameObject.FindGameObjectWithTag("Player");
+		if (playerObj == null)
+			Debug.LogError("No player object found.", this);
 
 		if (oceanPfab == null)
 			Debug.LogError("No ocean prefab assigned.", this);
@@ -68,6 +69,7 @@ public class scriptOceanManager : MonoBehaviour
 			Debug.LogError("Barge spawn rate cannot be 0.", this);
 
 		//initialize values
+		player = playerObj.transform;
 		chunksVisibleInViewDist = Mathf.RoundToInt(Mathf.Sqrt(maxViewDist) / mapChunkSize);
 	}
 
