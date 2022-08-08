@@ -29,7 +29,7 @@ public class BoatController : MonoBehaviour
     {
         float speed = boatRigidBody.velocity.magnitude;
         
-        Debug.Log(speed);
+        //Debug.Log(speed);
 
         buoyancyBobRange = 0.1f + (speed / 4) * 0.3f;
         

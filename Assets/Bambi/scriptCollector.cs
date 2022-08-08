@@ -29,6 +29,8 @@ public class scriptCollector : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Trash"))
 		{
+			Debug.Log("Got trash.");
+			
 			StartCoroutine("processTrash", collision.gameObject);
 		}
 	}
