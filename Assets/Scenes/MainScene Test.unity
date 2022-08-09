@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -332,22 +332,6 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1024429617}
-    - target: {fileID: 1763533372, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1426705937751609567, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1426705937751609567, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 1426705938522327447, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.86
-      objectReference: {fileID: 0}
     - target: {fileID: 1460877122148076926, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -398,11 +382,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
---- !u!4 &810979981 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1899447824, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-  m_PrefabInstance: {fileID: 810979980}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &864117953
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1329924674762137560, guid: 358208fa780138a4788e2c9ad2dc6246, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 0.00299148
       objectReference: {fileID: 0}
     - target: {fileID: 1329924674762137560, guid: 358208fa780138a4788e2c9ad2dc6246, type: 3}
       propertyPath: m_LocalScale.z
@@ -606,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 1329924674762137561, guid: 358208fa780138a4788e2c9ad2dc6246, type: 3}
       propertyPath: pausePos
       value: 
-      objectReference: {fileID: 810979981}
+      objectReference: {fileID: 1369115799}
     - target: {fileID: 1329924674762137561, guid: 358208fa780138a4788e2c9ad2dc6246, type: 3}
       propertyPath: PauseCanvas
       value: 
