@@ -7539,7 +7539,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: -0.01, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20185561, y: 0.42052338, z: -0.42017043}
+  m_ConnectedAnchor: {x: 0.20185561, y: 0.4205232, z: -0.42016885}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -7981,10 +7981,10 @@ GameObject:
   - component: {fileID: 1460877122148076926}
   - component: {fileID: 2237660833902614470}
   - component: {fileID: 2237660833902614471}
-  - component: {fileID: 2237660833902614521}
   - component: {fileID: 126131675}
-  - component: {fileID: 126131679}
   - component: {fileID: 1699015427}
+  - component: {fileID: 426887054}
+  - component: {fileID: 426887056}
   m_Layer: 8
   m_Name: BOAT
   m_TagString: Boat
@@ -8075,23 +8075,10 @@ MonoBehaviour:
   buoyancyBobSpeed: 1
   _rightPaddle: {fileID: 6139962765264820207}
   _leftPaddle: {fileID: 4415491707370377025}
-  _rotationModifier: 500
+  _rotationModifier: -250
   thrust: 0
   steering: 0
   trashCounter: 0
---- !u!65 &2237660833902614521
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2237660833902614468}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.899312, y: 4.437858, z: 7.6624928}
-  m_Center: {x: 0.025474906, y: -1.7189301, z: 3.4503803}
 --- !u!114 &126131675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8104,19 +8091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba30022dd65de2243a006b20f5f816b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &126131679
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2237660833902614468}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.553284, y: 2.3179944, z: 0.99999934}
-  m_Center: {x: -0.21421717, y: 0.47899735, z: 7.21}
 --- !u!114 &1699015427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8130,6 +8104,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+--- !u!136 &426887054
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237660833902614468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.5099998
+  m_Height: 11.589508
+  m_Direction: 2
+  m_Center: {x: 6.2, y: -2.6999989, z: 0.63524574}
+--- !u!136 &426887056
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237660833902614468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.5099998
+  m_Height: 11.068143
+  m_Direction: 2
+  m_Center: {x: -6.34, y: -2.6999989, z: 0.89592534}
 --- !u!1 &2361966676418945635
 GameObject:
   m_ObjectHideFlags: 0

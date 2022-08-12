@@ -67,8 +67,14 @@ public class GameManager : MonoBehaviour
 		dash.updateFundsAmount(playerFunds);
 	}
 
+	/// <summary>
+	/// Set the fuel level to the passed in value.
+	/// </summary>
+	/// <param name="value"></param>
     public void updateFuel(float value)
 	{
+		fuelLevel = value;
+		
 		//Update Dash UI
 		dash.updateFuelAmount(value);
 	}
