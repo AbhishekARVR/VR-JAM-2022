@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
+
+    public static BoatController Instance;
+
     private float initialYPosition;
     
     [SerializeField] private Rigidbody boatRigidBody;
     [SerializeField] private Transform turnAxis, SteerTransform, ThrustTransform;
     [SerializeField] private float buoyancyBobRange ;
     [SerializeField] private float buoyancyBobSpeed;
+    [SerializeField] private GameObject _rightPaddle;
+    [SerializeField] private GameObject _leftPaddle;
+    [SerializeField] private float _rotationModifier = 20f;
     
     [Range(0f, 1f)]
-    [SerializeField] private float thrust;
+    [SerializeField] public float thrust;
     [Range(-1f, 1f)] 
     [SerializeField] private float steering;
     
@@ -20,13 +26,25 @@ public class BoatController : MonoBehaviour
     {
         boatRigidBody = this.GetComponent<Rigidbody>();
         initialYPosition = this.transform.localPosition.y;
+
+        //singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private void FixedUpdate()
     {
         float speed = boatRigidBody.velocity.magnitude;
-        
+
         //Debug.Log(speed);
+
+        SpinThePaddle();
 
         buoyancyBobRange = 0.1f + (speed / 4) * 0.3f;
         
@@ -73,6 +91,7 @@ public class BoatController : MonoBehaviour
             CancelInvoke(nameof(ReduceFuel));
 			GameManager.Instance.fuelLevel = 0f;
         }
+
     }
 
     private void ReduceFuel()
@@ -90,5 +109,18 @@ public class BoatController : MonoBehaviour
     {
         trashCounter += trashValue;
     }
+
+    private void SpinThePaddle()
+    {
+        Vector3 _rotation = new Vector3(0, 0, 0);
+        float RotationSpeed = _rotationModifier * thrust * Time.deltaTime;
+        _rotation.x = RotationSpeed;
+        _rightPaddle.transform.Rotate(_rotation);
+        _leftPaddle.transform.Rotate(_rotation);
+    }
+
+
+
+
 
 }
