@@ -390,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2237660833902614471, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
       propertyPath: _rotationModifier
-      value: -500
+      value: -250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
