@@ -80,12 +80,14 @@ public class scriptTrashChute : MonoBehaviour
 	//coroutines
 	private IEnumerator SuctionTrashRoutine(List<GameObject> trashObjs)
 	{
-		//Clear out any dead references
+		//Clear out any dead references and set colliders to not be triggers
 		List<GameObject> trashToRemove = new List<GameObject>();
 		foreach (var trash in trashObjs)
 		{
 			if (trash == null)
 				trashToRemove.Add(trash);
+			else
+				trash.GetComponent<Collider>().isTrigger = false;
 		}
 		foreach(var trash in trashToRemove)
 		{

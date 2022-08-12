@@ -26,7 +26,8 @@ public class TogglePauseMenu : MonoBehaviour
     private void Update()
     {
         PauseCanvas.transform.position = pausePos.transform.position;
-    }
+		PauseCanvas.transform.rotation = pausePos.transform.rotation;
+	}
 
 
     public void ActivateMenu()

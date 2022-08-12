@@ -15,6 +15,7 @@ public class StartGame : MonoBehaviour
     void Update()
     {
         StartCanvas.transform.position = pausePos.transform.position;
+		StartCanvas.transform.rotation = pausePos.transform.rotation;
     }
 
     public void StartTheGame()
