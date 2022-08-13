@@ -58,23 +58,25 @@ public class scriptTrashChute : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.CompareTag("Boat"))
-		{
-			Debug.Log("Exiting trash suction zone.");
+		//Don't think we need this as we want to make sure all trash is sucked before turning off?
+		
+		//if (other.CompareTag("Boat"))
+		//{
+		//	Debug.Log("Exiting trash suction zone.");
 
-			if (suctionTrashRoutine != null)
-			{
-				StopCoroutine(suctionTrashRoutine);
-				suctionTrashRoutine = null;
-			}
+		//	if (suctionTrashRoutine != null)
+		//	{
+		//		StopCoroutine(suctionTrashRoutine);
+		//		suctionTrashRoutine = null;
+		//	}
 			
-			//Stop jiggle animation
-			trashSuckerAnim.speed = 0;
+		//	//Stop jiggle animation
+		//	trashSuckerAnim.speed = 0;
 
-			//Play die down sound effect
-			oneShots.PlayOneShot(AudioManager.Instance.trashSuckerSpinDown);
-			loop.Stop();
-		}
+		//	//Play die down sound effect
+		//	oneShots.PlayOneShot(AudioManager.Instance.trashSuckerSpinDown);
+		//	loop.Stop();
+		//}
 	}
 
 	//coroutines
@@ -112,6 +114,8 @@ public class scriptTrashChute : MonoBehaviour
 		//prepare to suck trash
 		foreach (GameObject trash in trashObjs)
 		{
+			trash.transform.parent = null;//remove boat parenting so the physics don't go crazy.
+			
 			var rb = trash.GetComponent<Rigidbody>();
 			rb.isKinematic = false;
 			rb.useGravity = false;

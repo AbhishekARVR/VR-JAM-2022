@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44ed68596de2c84385fac745a058217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suckPower: 5
+  suckPower: 0.5
   trashSucker: {fileID: 7303204458733752070}
 --- !u!135 &1498318296
 SphereCollider:
