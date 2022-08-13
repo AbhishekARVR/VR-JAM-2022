@@ -332,13 +332,9 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1024429617}
-    - target: {fileID: 1426705937751609567, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.728
-      objectReference: {fileID: 0}
-    - target: {fileID: 1426705938260843585, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.372
+    - target: {fileID: 1426705937127324528, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1460877122148076926, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
       propertyPath: m_RootOrder
@@ -387,10 +383,6 @@ PrefabInstance:
     - target: {fileID: 2237660833902614468, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
       propertyPath: m_Name
       value: BOAT
-      objectReference: {fileID: 0}
-    - target: {fileID: 4254673433580982716, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.183
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
