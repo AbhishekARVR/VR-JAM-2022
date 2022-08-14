@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioClip menuMusic, sailingMusic, scavRadio, backgroundBoat, bargeNoise, trashSuckerStartUp, trashSuckerRunning, trashSuckerSpinDown;
+    public AudioClip menuMusic, sailingMusic, scavRadio, backgroundBoat, bargeNoise, trashSuckerStartUp, trashSuckerRunning, trashSuckerSpinDown, steamBoatEngine, steamBoatPaddle;
 
 
     [SerializeField] public AudioSource Music1;

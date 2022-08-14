@@ -41,11 +41,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5253342603449584191, guid: 2b5d808043cfe8a43a139c2ee7c63499, type: 2}
-  m_audioClip: {fileID: 8300000, guid: c1adfe7f586789148ab27e30c4ba4a5c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de399a6f8dcb31545a98084e7903eca7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -424,9 +424,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3627966149412140421, guid: 2b5d808043cfe8a43a139c2ee7c63499, type: 2}
   m_audioClip: {fileID: 8300000, guid: feb25ddd133f37345a9693fe4968d230, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.89
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -564,12 +564,15 @@ MonoBehaviour:
   trashSuckerStartUp: {fileID: 8300000, guid: bda4a820f4ba10c49afcbdc060c0f7c8, type: 3}
   trashSuckerRunning: {fileID: 8300000, guid: 2cbbe4f7b76fea6489aeed415412ab88, type: 3}
   trashSuckerSpinDown: {fileID: 8300000, guid: 539fb67c97649a14d8ea5a67b5417e9f, type: 3}
+  steamBoatEngine: {fileID: 8300000, guid: d05b5651d2234af4bb4110962497dbda, type: 3}
+  steamBoatPaddle: {fileID: 8300000, guid: 2e49293f1f8e0ee47a65254e4da9d7b7, type: 3}
   Music1: {fileID: 2963730889071552952}
   Music2: {fileID: 2963730891085429757}
   Background1: {fileID: 2963730889931627678}
   Background2: {fileID: 2963730889677250343}
   Sounds: {fileID: 2963730889688701584}
   fadetime: 1
+  radiofadetime: 5
 --- !u!1 &2963730891085429756
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,11 +614,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5253342603449584191, guid: 2b5d808043cfe8a43a139c2ee7c63499, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 16792da6a903e414e979a6a94840c0f9, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

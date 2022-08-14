@@ -19,10 +19,24 @@ public class BoatController : MonoBehaviour
     [SerializeField] public float thrust;
     [Range(-1f, 1f)] 
     [SerializeField] private float steering;
+
+	private AudioSource engineAudio;
+	private AudioSource paddleAudio;
     
     public int trashCounter;
-    
-    private void Awake()
+
+	private void Start()
+	{
+		var aSrcs = GetComponents<AudioSource>();
+
+		if (aSrcs.Length != 2)
+			Debug.LogError("Missing needed audio sources on boat.", this);
+
+		engineAudio = aSrcs[1];
+		paddleAudio = aSrcs[0];
+	}
+
+	private void Awake()
     {
         boatRigidBody = this.GetComponent<Rigidbody>();
         initialYPosition = this.transform.localPosition.y;
@@ -46,17 +60,18 @@ public class BoatController : MonoBehaviour
 
         SpinThePaddle();
 
+		AdjustEngineSounds();
+
         buoyancyBobRange = 0.1f + (speed / 4) * 0.3f;
         
         float y = (initialYPosition + (Mathf.Sin(Time.time * buoyancyBobSpeed)) * buoyancyBobRange);
         transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
 
-        if (GameManager.Instance.fuelLevel != 0)
+        if (GameManager.Instance.fuelLevel > 0)
         {
             float thrustRotation;
 
-            
-             if (ThrustTransform.localRotation.eulerAngles.x > 180f)
+            if (ThrustTransform.localRotation.eulerAngles.x > 180f)
                 thrustRotation = ThrustTransform.localRotation.eulerAngles.x - 360f;
             else
             {
@@ -119,8 +134,15 @@ public class BoatController : MonoBehaviour
         _leftPaddle.transform.Rotate(_rotation);
     }
 
+	private void AdjustEngineSounds()
+	{
+		float fullSoundThreshold = 1f; //how far do you have to push the lever to fully hear the paddle sounds.
+		float pitchAdjustAmount = .5f; //use a fraction between 0 and 1.
 
+		//ajdust engine
+		engineAudio.pitch = 1 + (thrust * pitchAdjustAmount);
 
-
-
+		//adjust paddle
+		paddleAudio.volume = Mathf.Clamp(thrust / fullSoundThreshold, 0, 1);
+	}
 }
