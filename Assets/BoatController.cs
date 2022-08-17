@@ -23,8 +23,6 @@ public class BoatController : MonoBehaviour
 
 	private AudioSource engineAudio;
 	private AudioSource paddleAudio;
-    
-    public int trashCounter;
 
 	private void Start()
 	{
@@ -114,35 +112,43 @@ public class BoatController : MonoBehaviour
         GameManager.Instance.useFuel(fuelEfficiency);
     }
 
-	//Handled at the game manger level
-    //public void Refuel(int fuelAMount)
-    //{
-    //    fuelCounter = fuelAMount;
-    //}
-
-    public void AddTrashValue(int trashValue)
-    {
-        trashCounter += trashValue;
-    }
-
     private void SpinThePaddle()
     {
-        Vector3 _rotation = new Vector3(0, 0, 0);
-        float RotationSpeed = _rotationModifier * thrust * Time.deltaTime;
-        _rotation.x = RotationSpeed;
-        _rightPaddle.transform.Rotate(_rotation);
-        _leftPaddle.transform.Rotate(_rotation);
-    }
+		if (GameManager.Instance.fuelLevel > 0)
+		{
+			Vector3 _rotation = new Vector3(0, 0, 0);
+			float RotationSpeed = _rotationModifier * thrust * Time.deltaTime;
+			_rotation.x = RotationSpeed;
+			_rightPaddle.transform.Rotate(_rotation);
+			_leftPaddle.transform.Rotate(_rotation);
+		}
+	}
 
 	private void AdjustEngineSounds()
 	{
 		float fullSoundThreshold = 1f; //how far do you have to push the lever to fully hear the paddle sounds.
 		float pitchAdjustAmount = .5f; //use a fraction between 0 and 1.
 
-		//ajdust engine
-		engineAudio.pitch = 1 + (thrust * pitchAdjustAmount);
+		if (GameManager.Instance.fuelLevel > 0)
+		{
+			//ajdust engine
+			engineAudio.pitch = 1 + (thrust * pitchAdjustAmount);
 
-		//adjust paddle
-		paddleAudio.volume = Mathf.Clamp(thrust / fullSoundThreshold, 0, 1);
+			//adjust paddle
+			paddleAudio.volume = Mathf.Clamp(thrust / fullSoundThreshold, 0, 1);
+		}
+		else if (GameManager.Instance.fuelLevel == 0 && engineAudio.pitch > 0)
+		{
+			//ajdust engine
+			engineAudio.pitch -= .01f;
+
+			//adjust paddle
+			paddleAudio.volume = 0;
+		}
+		else if (GameManager.Instance.fuelLevel == 0 && engineAudio.pitch <= 0)
+		{
+			//quiet down the engine
+			engineAudio.volume = 0;
+		}
 	}
 }
