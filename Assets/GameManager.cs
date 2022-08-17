@@ -54,14 +54,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-	public void removeTrash(int amountToRemove)
+	public void updateTrash(int amount)
 	{
-		dash.updateTrashAmount(trashCount - amountToRemove);
+		//update trash amount
+		trashCount += amount;
+
+		//update ui
+		dash.updateTrashAmount(trashCount);
 	}
 
     public void updatePlayerFunds(int value)
 	{
 		playerFunds += value;
+
+		//Play cha-ching audio?
 
 		//Update Dash UI
 		dash.updateFundsAmount(playerFunds);

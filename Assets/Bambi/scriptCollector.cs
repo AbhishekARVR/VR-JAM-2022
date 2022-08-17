@@ -97,30 +97,10 @@ public class scriptCollector : MonoBehaviour
 			Random.Range(trashZone.bounds.min.z, trashZone.bounds.max.z)
 		);
 
-		//Apply a little launching force
-		//trashObj.GetComponent<Rigidbody>().AddForce(-transform.up * tubeExitForce); //assuming spout is on the left side of the boat facing in.
+		collectedTrash.Add(trashObj);
+		GameManager.Instance.updateTrash(1);
 
-		//Wait for trash to settle
-		//yield return new WaitForSeconds(settleTime);
-
-		//If we landed in the basked, cool turn off physics, if not destory the object.
-		//Gives us a fun way to limit the amount of trash, without just having to set a specific trash limit.
-		//var trash = trashObj.GetComponent<scriptTrash>();
-
-		//if (trash.isCollected)
-		//{
-		//	trashObj.GetComponent<Rigidbody>().isKinematic = true;
-
-		//	//Add trash to trashCollection
-			collectedTrash.Add(trashObj);
-			GameManager.Instance.trashCount++;
-
-		//	//Update Dash UI
-			dashBoard.updateTrashAmount(collectedTrash.Count);
-		//}
-		//else
-		//{
-		//	Destroy(trashObj);
-		//}
+		//Update Dash UI
+		dashBoard.updateTrashAmount(collectedTrash.Count);
 	}
 }

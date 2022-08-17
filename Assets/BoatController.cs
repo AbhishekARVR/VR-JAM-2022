@@ -9,11 +9,12 @@ public class BoatController : MonoBehaviour
     
     [SerializeField] private Rigidbody boatRigidBody;
     [SerializeField] private Transform turnAxis, SteerTransform, ThrustTransform;
-    [SerializeField] private float buoyancyBobRange ;
+    [SerializeField] private float buoyancyBobRange;
     [SerializeField] private float buoyancyBobSpeed;
     [SerializeField] private GameObject _rightPaddle;
     [SerializeField] private GameObject _leftPaddle;
     [SerializeField] private float _rotationModifier = 20f;
+	[SerializeField] private float fuelEfficiency = .5f;
     
     [Range(0f, 1f)]
     [SerializeField] public float thrust;
@@ -106,12 +107,11 @@ public class BoatController : MonoBehaviour
             CancelInvoke(nameof(ReduceFuel));
 			GameManager.Instance.fuelLevel = 0f;
         }
-
     }
 
     private void ReduceFuel()
     {
-        GameManager.Instance.useFuel(0.2f);
+        GameManager.Instance.useFuel(fuelEfficiency);
     }
 
 	//Handled at the game manger level

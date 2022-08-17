@@ -11,6 +11,7 @@ public class scriptTrashChute : MonoBehaviour
 	private AudioSource oneShots;
 	private AudioSource loop;
 	
+	private scriptCollector collector;
 	List<Rigidbody> trashRBs = new List<Rigidbody>();
 
 	//coroutines
@@ -36,55 +37,41 @@ public class scriptTrashChute : MonoBehaviour
 		{
 			Debug.Log("Entering trash suction zone.");
 
-			var test = other.GetComponentInChildren<scriptCollector>();
+			collector = other.GetComponentInChildren<scriptCollector>();
 
 			//get trash amount on player
-			suctionTrashRoutine = SuctionTrashRoutine(test.collectedTrash);
+			suctionTrashRoutine = SuctionTrashRoutine(collector);
 
 			StartCoroutine(suctionTrashRoutine);
 		}
+	}
 
-		if (other.CompareTag("Trash"))
+	private void OnTriggerStay(Collider other)
+	{
+		if (trashSuckerAnim.speed > 0) //we only want to take the trash if we've actually started sucking trash
 		{
-			var trash = other.GetComponent<scriptTrash>();
+			if (other.CompareTag("Trash"))
+			{
+				var trash = other.GetComponent<scriptTrash>();
 
-			GameManager.Instance.updatePlayerFunds(trash.value);
+				GameManager.Instance.updateTrash(-1);
+				GameManager.Instance.updatePlayerFunds(trash.value);
 
-			trashRBs.Remove(other.GetComponent<Rigidbody>());
+				//Clean up game references
+				collector.collectedTrash.Remove(other.gameObject);
+				trashRBs.Remove(other.GetComponent<Rigidbody>());
 
-			Destroy(other.gameObject);
+				Destroy(other.gameObject);
+			}
 		}
 	}
 
-	private void OnTriggerExit(Collider other)
-	{
-		//Don't think we need this as we want to make sure all trash is sucked before turning off?
-		
-		//if (other.CompareTag("Boat"))
-		//{
-		//	Debug.Log("Exiting trash suction zone.");
-
-		//	if (suctionTrashRoutine != null)
-		//	{
-		//		StopCoroutine(suctionTrashRoutine);
-		//		suctionTrashRoutine = null;
-		//	}
-			
-		//	//Stop jiggle animation
-		//	trashSuckerAnim.speed = 0;
-
-		//	//Play die down sound effect
-		//	oneShots.PlayOneShot(AudioManager.Instance.trashSuckerSpinDown);
-		//	loop.Stop();
-		//}
-	}
-
 	//coroutines
-	private IEnumerator SuctionTrashRoutine(List<GameObject> trashObjs)
+	private IEnumerator SuctionTrashRoutine(scriptCollector collector)
 	{
 		//Clear out any dead references and set colliders to not be triggers
 		List<GameObject> trashToRemove = new List<GameObject>();
-		foreach (var trash in trashObjs)
+		foreach (var trash in collector.collectedTrash)
 		{
 			if (trash == null)
 				trashToRemove.Add(trash);
@@ -94,40 +81,39 @@ public class scriptTrashChute : MonoBehaviour
 		foreach(var trash in trashToRemove)
 		{
 			Debug.Log("Removing old trash reference.", this);
-			trashObjs.Remove(trash);
+			collector.collectedTrash.Remove(trash);
 		}
 		
 		//Play start up sound, wait the duration of the clip length
 		oneShots.PlayOneShot(AudioManager.Instance.trashSuckerStartUp);
 		yield return new WaitForSeconds(AudioManager.Instance.trashSuckerStartUp.length);
 
-		//Start jiggle animation
-		trashSuckerAnim.speed = 3; //3 seems good?
-
 		//Start audio
 		loop.clip = AudioManager.Instance.trashSuckerRunning;
 		loop.Play();
 
-		//Update UI
-		GameManager.Instance.removeTrash(trashObjs.Count);
+		//Start jiggle animation
+		trashSuckerAnim.speed = 3; //3 seems good?
 
 		//prepare to suck trash
-		foreach (GameObject trash in trashObjs)
+		foreach (GameObject trash in collector.collectedTrash)
 		{
 			trash.transform.parent = null;//remove boat parenting so the physics don't go crazy.
 			
 			var rb = trash.GetComponent<Rigidbody>();
 			rb.isKinematic = false;
 			rb.useGravity = false;
+			rb.drag = 1;
 			trashRBs.Add(rb);
 		}
 
 		//Suck trash
+		Transform suckPoint = trashSucker.transform.Find("SuckPoint");
 		while (trashRBs.Count > 0)
 		{
 			foreach(Rigidbody rb in trashRBs)
 			{
-				Vector3 diff = trashSucker.transform.position - rb.transform.position;
+				Vector3 diff = suckPoint.position - rb.transform.position;
 				rb.AddForce(diff * suckPower);
 			}
 

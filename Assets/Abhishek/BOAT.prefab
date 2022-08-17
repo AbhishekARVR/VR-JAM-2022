@@ -4974,7 +4974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426705936582294536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.22}
+  m_LocalPosition: {x: 0, y: 0, z: 7.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1460877122148076926}
@@ -7027,7 +7027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426705937751609565}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.186, y: -0.19, z: -4.85}
+  m_LocalPosition: {x: 0.186, y: -0.35, z: -4.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1426705938075267505}
@@ -8077,6 +8077,7 @@ MonoBehaviour:
   _rightPaddle: {fileID: 6139962765264820207}
   _leftPaddle: {fileID: 4415491707370377025}
   _rotationModifier: -250
+  fuelEfficiency: 0.4
   thrust: 0
   steering: 0
   trashCounter: 0
