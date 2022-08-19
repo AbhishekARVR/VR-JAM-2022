@@ -25,7 +25,7 @@ public class scriptDashBoard : MonoBehaviour
 
 	public void updateTrashAmount(int trashCount)
 	{
-		txtTrashAmount.text = $"Trash: {trashCount}";
+		txtTrashAmount.text = $"Trash: {trashCount}/{GameManager.Instance.maxTrashCount}";
 	}
 
 	public void updateFuelAmount(float fuelCount)

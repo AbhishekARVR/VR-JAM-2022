@@ -54,8 +54,8 @@ public class scriptTrashChute : MonoBehaviour
 			{
 				var trash = other.GetComponent<scriptTrash>();
 
-				GameManager.Instance.updateTrash(-1);
-				GameManager.Instance.updatePlayerFunds(trash.value);
+				if (GameManager.Instance.updateTrash(-1))
+					GameManager.Instance.updatePlayerFunds(trash.value);
 
 				//Clean up game references
 				collector.collectedTrash.Remove(other.gameObject);

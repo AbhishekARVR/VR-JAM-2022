@@ -27,6 +27,6 @@ public class scriptOceanBob : MonoBehaviour
     public void DoTheBob()
     {
         float y = scriptOceanManager.Instance.oceanPlane + ((Mathf.Sin(Time.time * speed + offset)) * range);
-		transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
+		transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
 }

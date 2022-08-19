@@ -72,35 +72,32 @@ public class scriptCollector : MonoBehaviour
 	//coroutines
 	private IEnumerator processTrash(GameObject trashObj)
 	{
-		//Remove trash from chunk
-		scriptOceanManager.Instance.RemoveCollectedTrash(trashObj.transform.position, trashObj);
+		if (GameManager.Instance.updateTrash(1))
+		{
+			//Remove trash from its chunk
+			scriptOceanManager.Instance.RemoveCollectedTrash(trashObj.transform.position, trashObj);
 		
-		//Turn the trash obj off
-		trashObj.SetActive(false);
+			//Prepare trash to fall into the basket
+			trashObj.SetActive(false);
+			trashObj.transform.parent = transform.parent.parent; //parent the trash to the boat so physics don't go crazy on us
+			Destroy(trashObj.GetComponent<scriptOceanBob>());
+			prepareRigidbody(trashObj);
+			trashObj.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
 
-		//Prepare trash to fall into the basket
-		trashObj.transform.parent = transform.parent.parent; //parent the trash to the boat so physics don't go crazy on us
-		Destroy(trashObj.GetComponent<scriptOceanBob>());
-		prepareRigidbody(trashObj);
-		trashObj.transform.position = trashDumpPoint.position;
+			//Let trash move down the pipe
+			yield return new WaitForSeconds(tubeTime);
 
-		//Let trash move down the pipe
-		yield return new WaitForSeconds(tubeTime);
+			//Dump trash
+			trashObj.SetActive(true);
 
-		//Dump trash
-		trashObj.SetActive(true);
+			//Place randomly within the trash dump zone
+			trashObj.transform.position = new Vector3(
+				Random.Range(trashZone.bounds.min.x, trashZone.bounds.max.x),
+				Random.Range(trashZone.bounds.min.y, trashZone.bounds.max.y),
+				Random.Range(trashZone.bounds.min.z, trashZone.bounds.max.z)
+			);
 
-		//Place randomly within the trash dump zone, so it doesn't disrupt the boat
-		trashObj.transform.position = new Vector3(
-			Random.Range(trashZone.bounds.min.x, trashZone.bounds.max.x),
-			Random.Range(trashZone.bounds.min.y, trashZone.bounds.max.y),
-			Random.Range(trashZone.bounds.min.z, trashZone.bounds.max.z)
-		);
-
-		collectedTrash.Add(trashObj);
-		GameManager.Instance.updateTrash(1);
-
-		//Update Dash UI
-		dashBoard.updateTrashAmount(collectedTrash.Count);
+			collectedTrash.Add(trashObj);
+		}
 	}
 }

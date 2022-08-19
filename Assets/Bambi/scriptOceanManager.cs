@@ -17,10 +17,10 @@ public class scriptOceanManager : MonoBehaviour
 	public int maxTrashQuantity = 5;
 	[Tooltip("The minimum number of trash a chunk can contain.")]
 	public int minTrashQuantity = 1;
-	[Tooltip("How many chunks does the player have to explore before finding a rig.")]
-	public int rigSpawnRate;
-	[Tooltip("How many chunks does the player have to explore before finding a barge.")]
-	public int bargeSpawnRate;
+	[Tooltip("How many chunks does the player have to explore before finding something interesting.")]
+	public int pointOfInterestSpawnRate;
+	[Tooltip("How many barges have to spawn before a rig appears.")]
+	public int rigMultiplier;
 
 	public GameObject oceanPfab;
 	public GameObject rigPfab;
@@ -62,11 +62,11 @@ public class scriptOceanManager : MonoBehaviour
 		if (bargePfab == null)
 			Debug.LogError("No barge prefab assigned.", this);
 
-		if (rigSpawnRate == 0)
-			Debug.LogError("Rig spawn rate cannot be 0.", this);
+		if (pointOfInterestSpawnRate == 0)
+			Debug.LogError("POI spawn rate cannot be 0.", this);
 
-		if (bargeSpawnRate == 0)
-			Debug.LogError("Barge spawn rate cannot be 0.", this);
+		if (rigMultiplier == 0)
+			Debug.LogError("Rig multiplier cannot be 0.", this);
 
 		//initialize values
 		player = playerObj.transform;
@@ -151,14 +151,14 @@ public class scriptOceanManager : MonoBehaviour
 	public (ChunkType type, List<GameObject> objs) SpawnChunkObjects(Bounds bounds)
 	{
 		//check if we should spawn a rig
-		if (chunks.Count > 0 && chunks.Count % rigSpawnRate == 0)
+		if (chunks.Count > 0 && chunks.Count % (pointOfInterestSpawnRate * rigMultiplier) == 0)
 			return (ChunkType.Rig, new List<GameObject>()
 			{
 				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)
 			});
 
 		//check if we should spawn a barge
-		if (chunks.Count > 0 && chunks.Count % bargeSpawnRate == 0)
+		if (chunks.Count > 0 && chunks.Count % pointOfInterestSpawnRate == 0)
 			return (ChunkType.Barge, new List<GameObject>()
 			{
 				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)

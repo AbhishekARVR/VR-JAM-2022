@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 	public int playerFunds = 0;
 	public int trashCount = 0;
+	public int maxTrashCount = 10;
 	public float fuelLevel = 100f;
 	public float maxFuel = 100f;
 
@@ -54,13 +55,34 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-	public void updateTrash(int amount)
+	public bool updateTrash(int amount)
 	{
-		//update trash amount
-		trashCount += amount;
+		int newTrashCount = trashCount + amount;
+		
+		if (newTrashCount <= maxTrashCount && newTrashCount >= 0) //only update trash if we have room for it.
+		{
+			if (newTrashCount > trashCount)
+			{
+				//play trash added audio
+			}
+			else if (newTrashCount < trashCount)
+			{
+				//play trash removed audio
+			}
+			
+			//update trash amount
+			trashCount = newTrashCount;
 
-		//update ui
-		dash.updateTrashAmount(trashCount);
+			//update ui
+			dash.updateTrashAmount(trashCount);
+
+			return true;
+		}
+
+		//Otherwise the trash has been rejected
+		//play trash rejected audio
+
+		return false;
 	}
 
     public void updatePlayerFunds(int value)

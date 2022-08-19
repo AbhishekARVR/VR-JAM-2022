@@ -646,8 +646,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5918809, y: 1.0067903, z: 0.34494728}
-  m_Center: {x: 0.032630406, y: 0.5921682, z: -0.009247887}
+  m_Size: {x: 0.58756185, y: 0.36550105, z: 0.29945752}
+  m_Center: {x: 0.030470856, y: 0.34100816, z: -0.0093740905}
 --- !u!114 &255019885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3937,11 +3937,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763533368}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 4.786218e-10, z: 10.000001}
-  m_Center: {x: -0.00000011920929, y: 0, z: 0.0000019073486}
+  m_Size: {x: 5.5515985, y: 4.786354e-10, z: 11.532705}
+  m_Center: {x: 0.024673223, y: -0.0000008029856, z: -2.1808288}
 --- !u!1 &1826263926
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,10 +8077,9 @@ MonoBehaviour:
   _rightPaddle: {fileID: 6139962765264820207}
   _leftPaddle: {fileID: 4415491707370377025}
   _rotationModifier: -250
-  fuelEfficiency: 0.4
+  fuelEfficiency: 0.45
   thrust: 0
   steering: 0
-  trashCounter: 0
 --- !u!114 &1699015427
 MonoBehaviour:
   m_ObjectHideFlags: 0
