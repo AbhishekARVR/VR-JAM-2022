@@ -20,4 +20,9 @@ public class scriptBuyStuff : MonoBehaviour
 	{
 		GameManager.Instance.buyFuel(cost);
 	}
+
+	public void buyTrashCapacityUpgrade(int cost)
+	{
+		GameManager.Instance.buyTrashCapacityUpgrade(cost);
+	}
 }

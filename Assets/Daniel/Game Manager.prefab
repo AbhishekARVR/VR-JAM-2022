@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c44aa956ebb9c44ba54a702851ebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dash: {fileID: 0}
+  playerFunds: 0
+  trashCount: 0
+  trashCapacity: 10
+  maxTrashCapacity: 100
+  trashCapacityIncrement: 10
+  fuelLevel: 100
+  maxFuel: 100

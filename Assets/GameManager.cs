@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
 
 	public int playerFunds = 0;
 	public int trashCount = 0;
-	public int maxTrashCount = 10;
+	public int trashCapacity;
+	public int maxTrashCapacity;
+	public int trashCapacityIncrement;
+
 	public float fuelLevel = 100f;
 	public float maxFuel = 100f;
 
@@ -59,7 +62,7 @@ public class GameManager : MonoBehaviour
 	{
 		int newTrashCount = trashCount + amount;
 		
-		if (newTrashCount <= maxTrashCount && newTrashCount >= 0) //only update trash if we have room for it.
+		if (newTrashCount <= trashCapacity && newTrashCount >= 0) //only update trash if we have room for it.
 		{
 			if (newTrashCount > trashCount)
 			{
@@ -104,10 +107,20 @@ public class GameManager : MonoBehaviour
 		fuelLevel = value;
 		
 		//Update Dash UI
-		dash.updateFuelAmount(value);
+		dash.updateFuelAmount(fuelLevel);
 	}
 
-    public void useFuel(float value)
+	public void updateTrashCapacity(int increaseAmount)
+	{
+		trashCapacity += increaseAmount;
+
+		//Play cool upgrade sound!
+
+		//Update Dash UI
+		dash.updateTrashAmount(trashCount);
+	}
+
+	public void useFuel(float value)
 	{
 		fuelLevel -= value;
 
@@ -125,6 +138,15 @@ public class GameManager : MonoBehaviour
 		{
 			updatePlayerFunds(-(cost));
 			updateFuel(100);
+		}
+	}
+	
+	public void buyTrashCapacityUpgrade(int cost)
+	{
+		if (playerFunds >= cost && trashCapacity < maxTrashCapacity)
+		{
+			updatePlayerFunds(-(cost));
+			updateTrashCapacity(trashCapacityIncrement);
 		}
 	}
 }

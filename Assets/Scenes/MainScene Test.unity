@@ -178,10 +178,6 @@ PrefabInstance:
       propertyPath: dash
       value: 
       objectReference: {fileID: 682006260}
-    - target: {fileID: 1696556206571188715, guid: 0a657f2e2df547642b98aa81f8e7b9b1, type: 3}
-      propertyPath: maxTrashCount
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 1696556206571188716, guid: 0a657f2e2df547642b98aa81f8e7b9b1, type: 3}
       propertyPath: m_Name
       value: Game Manager
