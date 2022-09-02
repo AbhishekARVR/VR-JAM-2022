@@ -15,8 +15,8 @@ public class BoatController : MonoBehaviour
     [SerializeField] private GameObject _leftPaddle;
     [SerializeField] private float _rotationModifier = 20f;
 	[SerializeField] private float fuelEfficiency = .5f;
-    
-    [Range(0f, 1f)]
+
+	[Range(0f, 1f)]
     [SerializeField] public float thrust;
     [Range(-1f, 1f)] 
     [SerializeField] private float steering;
@@ -68,6 +68,7 @@ public class BoatController : MonoBehaviour
 
         if (GameManager.Instance.fuelLevel > 0)
         {
+			//Get rotation values from the throttle
             float thrustRotation;
 
             if (ThrustTransform.localRotation.eulerAngles.x > 180f)
@@ -79,23 +80,24 @@ public class BoatController : MonoBehaviour
 
             thrust = ((80f - (thrustRotation)) / 80f);
             
+			//Get rotation values from the steering wheel
             float steeringRotation = 0f;
 
-            
             if (SteerTransform.rotation.eulerAngles.x > 180f)
                 steeringRotation = SteerTransform.rotation.eulerAngles.x - 360f;
             else
-            {
                 steeringRotation = SteerTransform.rotation.eulerAngles.x;
-            }
             
             steering = (Mathf.PI / 180) * (steeringRotation * -1);
 
-            boatRigidBody.AddForceAtPosition(transform.forward * (thrust * Mathf.Cos(steering)  * -1f), turnAxis.position);
+			//Apply forward force
+            boatRigidBody.AddForceAtPosition(transform.forward * (thrust * GameManager.Instance.speedMultiplier * Mathf.Cos(steering)  * -1f), turnAxis.position);
 
-            boatRigidBody.AddForceAtPosition(turnAxis.right * (-1f * thrust * Mathf.Sin(steering)), turnAxis.position);
+			//Apply turning force
+			//TODO: make this apply torque force instead of side force.
+            boatRigidBody.AddForceAtPosition(turnAxis.right * (-1f * thrust * GameManager.Instance.speedMultiplier * Mathf.Sin(steering)), turnAxis.position);
 
-            if (thrust != 0  && !IsInvoking(nameof(ReduceFuel)))
+            if (thrust != 0 && !IsInvoking(nameof(ReduceFuel)))
             {
                 InvokeRepeating(nameof(ReduceFuel), 0f, 3f);
             }
@@ -109,7 +111,7 @@ public class BoatController : MonoBehaviour
 
     private void ReduceFuel()
     {
-        GameManager.Instance.useFuel(fuelEfficiency);
+        GameManager.Instance.useFuel(fuelEfficiency * thrust);
     }
 
     private void SpinThePaddle()

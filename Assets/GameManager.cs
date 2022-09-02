@@ -10,9 +10,14 @@ public class GameManager : MonoBehaviour
 
 	public int playerFunds = 0;
 	public int trashCount = 0;
+
 	public int trashCapacity;
 	public int maxTrashCapacity;
 	public int trashCapacityIncrement;
+
+	public float speedMultiplier = 1f;
+	public float maxSpeedMultiplier;
+	public float speedMultiplierIncrement;
 
 	public float fuelLevel = 100f;
 	public float maxFuel = 100f;
@@ -120,6 +125,14 @@ public class GameManager : MonoBehaviour
 		dash.updateTrashAmount(trashCount);
 	}
 
+	public void updateSpeed(float increaseAmount)
+	{
+		speedMultiplier += increaseAmount;
+
+		//Play cool upgrade sound!
+
+	}
+
 	public void useFuel(float value)
 	{
 		fuelLevel -= value;
@@ -147,6 +160,15 @@ public class GameManager : MonoBehaviour
 		{
 			updatePlayerFunds(-(cost));
 			updateTrashCapacity(trashCapacityIncrement);
+		}
+	}
+
+	public void buySpeedUpgrade(int cost)
+	{
+		if (playerFunds >= cost && speedMultiplier < maxSpeedMultiplier)
+		{
+			updatePlayerFunds(-(cost));
+			updateSpeed(speedMultiplierIncrement);
 		}
 	}
 }

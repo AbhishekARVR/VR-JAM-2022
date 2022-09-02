@@ -208,10 +208,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2963730889931627678, guid: a91791a84e8d7964ebca106d83628884, type: 3}
-      propertyPath: m_Volume
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 2963730891018773193, guid: a91791a84e8d7964ebca106d83628884, type: 3}
       propertyPath: m_Name
       value: Audio Manager

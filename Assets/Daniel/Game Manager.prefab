@@ -49,5 +49,8 @@ MonoBehaviour:
   trashCapacity: 10
   maxTrashCapacity: 100
   trashCapacityIncrement: 10
+  speedMultiplier: 1
+  maxSpeedMultiplier: 5
+  speedMultiplierIncrement: 1
   fuelLevel: 100
   maxFuel: 100
