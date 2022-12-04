@@ -9,15 +9,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class RotateInteractor : XRBaseInteractable
 {
+	//only got it working with y rotation :(
 	public enum RotType
 	{
-		X,
 		Y,
-		Z,
 	}
 	public RotType rotType;
 	[Tooltip("The set function will clean up the rotation to only fit within the set range of motion and snap to the set rotation axis.")]
-	private Func<Transform, float, float, Transform> rotAdjFunc;
+	private Func<Transform, float, float, float, Transform> rotAdjFunc;
 	
 	[Tooltip("The object we wish to interact with.")]
 	public Transform interactable;
@@ -48,14 +47,8 @@ public class RotateInteractor : XRBaseInteractable
 		//Set the rotation function we want to use at runtime. Saves us from having to 'if' this behavoir every loop.
 		switch (rotType)
 		{
-			case RotType.X:
-				rotAdjFunc = applyXRotation;
-				break;
 			case RotType.Y:
 				rotAdjFunc = applyYRotation;
-				break;
-			case RotType.Z:
-				rotAdjFunc = applyZRotation;
 				break;
 		}
 	}
@@ -111,33 +104,20 @@ public class RotateInteractor : XRBaseInteractable
 
 	private void ApplyRotation(Transform interactable, Vector3 anchorPos, float maxRotation, float minRotation)
 	{
+		//Grab the initial y rotation
+		var currentYPos = interactable.localEulerAngles.y > 180 ? interactable.localEulerAngles.y - 360 : interactable.localEulerAngles.y;
+
+		//Look at the anchor
 		interactable.LookAt(anchorPos);
 
-		rotAdjFunc.Invoke(interactable, maxRotation, minRotation);
+		//Clean up the rotation
+		rotAdjFunc.Invoke(interactable, currentYPos, maxRotation, minRotation);
 	}
-
-	/// <summary>
-	/// Uses and snaps to the x axis.
-	/// </summary>
-	private Func<Transform, float, float, Transform> applyXRotation = (interactable, maxRotation, minRotation) =>
-	{
-		var lookRotRelegated = interactable.localEulerAngles.x > 180 ? interactable.localEulerAngles.x - 360 : interactable.localEulerAngles.x;
-
-		if (lookRotRelegated > maxRotation)
-			lookRotRelegated = maxRotation;
-
-		if (lookRotRelegated < minRotation)
-			lookRotRelegated = minRotation;
-
-		interactable.localEulerAngles = new Vector3(lookRotRelegated, 0, 0);
-
-		return interactable;
-	};
 
 	/// <summary>
 	/// Uses and snaps to the y axis.
 	/// </summary>
-	private Func<Transform, float, float, Transform> applyYRotation = (interactable, maxRotation, minRotation) =>
+	private Func<Transform, float, float, float, Transform> applyYRotation = (interactable, currentYPos, maxRotation, minRotation) =>
 	{
 		var lookRotRelegated = interactable.localEulerAngles.y > 180 ? interactable.localEulerAngles.y - 360 : interactable.localEulerAngles.y;
 
@@ -147,25 +127,7 @@ public class RotateInteractor : XRBaseInteractable
 		if (lookRotRelegated < minRotation)
 			lookRotRelegated = minRotation;
 
-		interactable.localEulerAngles = new Vector3(0, lookRotRelegated, 0);
-
-		return interactable;
-	};
-
-	/// <summary>
-	/// Uses and snaps to the z axis.
-	/// </summary>
-	private Func<Transform, float, float, Transform> applyZRotation = (interactable, maxRotation, minRotation) =>
-	{
-		var lookRotRelegated = interactable.localEulerAngles.z > 180 ? interactable.localEulerAngles.z - 360 : interactable.localEulerAngles.z;
-
-		if (lookRotRelegated > maxRotation)
-			lookRotRelegated = maxRotation;
-
-		if (lookRotRelegated < minRotation)
-			lookRotRelegated = minRotation;
-
-		interactable.localEulerAngles = new Vector3(0, 0, lookRotRelegated);
+		interactable.localEulerAngles = new Vector3(0, Mathf.Lerp(currentYPos, lookRotRelegated, .1f), 0);
 
 		return interactable;
 	};

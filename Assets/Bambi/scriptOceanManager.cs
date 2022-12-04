@@ -154,14 +154,14 @@ public class scriptOceanManager : MonoBehaviour
 		if (chunks.Count > 0 && chunks.Count % (pointOfInterestSpawnRate * rigMultiplier) == 0)
 			return (ChunkType.Rig, new List<GameObject>()
 			{
-				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)
+				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.Euler(0, Random.Range(0, 359), 0))
 			});
 
 		//check if we should spawn a barge
 		if (chunks.Count > 0 && chunks.Count % pointOfInterestSpawnRate == 0)
 			return (ChunkType.Barge, new List<GameObject>()
 			{
-				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.identity)
+				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.Euler(0, Random.Range(0, 359), 0))
 			});
 
 		//else spawn trash

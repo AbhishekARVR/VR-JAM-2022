@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6aad47926e788241a9a993c2888aba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 20
+  value: 50
   isCollected: 0
 --- !u!114 &7882710915188356204
 MonoBehaviour:

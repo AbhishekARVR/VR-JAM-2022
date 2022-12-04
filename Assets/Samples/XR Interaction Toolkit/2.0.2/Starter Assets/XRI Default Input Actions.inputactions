@@ -278,6 +278,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TouchFaceArea",
+                    "type": "Button",
+                    "id": "bc5be212-16e3-4e96-8fd7-e682d8678613",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -456,6 +465,39 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "99b9a185-a28b-491e-9419-999169141148",
+                    "path": "<XRController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TouchFaceArea",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "483e0960-7226-4fe5-a0b9-94a2a5161834",
+                    "path": "<XRController>{LeftHand}/primaryTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TouchFaceArea",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76d9dd4a-feba-4df6-8e40-866e171fd9ce",
+                    "path": "<XRController>{LeftHand}/secondaryTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TouchFaceArea",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -796,6 +838,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TouchFaceArea",
+                    "type": "Button",
+                    "id": "76e3d4fc-fc8a-42f4-bce8-aaf3439d027b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -974,6 +1025,39 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "54264722-5c42-4167-bc52-7af1ad0e2bbb",
+                    "path": "<XRController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TouchFaceArea",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f21dbad-eaf8-46fc-80fe-5cc7596be179",
+                    "path": "<XRController>{RightHand}/primaryTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TouchFaceArea",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89b1b157-9dc0-4f04-be09-275ccb180bb0",
+                    "path": "<XRController>{RightHand}/secondaryTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "TouchFaceArea",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

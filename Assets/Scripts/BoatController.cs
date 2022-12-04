@@ -23,6 +23,9 @@ public class BoatController : MonoBehaviour
 
 	[Range(0f, 1f)]
     [SerializeField] public float thrust;
+	[Tooltip("A value between 0 and 1 that represents the ratio of the max speed we want to allow for going in reverse.")]
+	[SerializeField] public float thrustBaseMiltiplier;
+	[SerializeField] public float reverseDampener;
     [Range(-1f, 1f)] 
     [SerializeField] private float steering;
 
@@ -64,7 +67,7 @@ public class BoatController : MonoBehaviour
 
 		AdjustEngineSounds();
 
-		//HandleBuoyancy(speed);
+		HandleBuoyancy(speed);
 
         if (GameManager.Instance.fuelLevel > 0)
         {
@@ -124,17 +127,20 @@ public class BoatController : MonoBehaviour
 
 		steering = (Mathf.PI / 180) * (steeringRotation);
 
+		//dampen the thrust if we are moving in reverse
+		if (thrust < 0) thrust *= reverseDampener;
+
 		//Apply forward force
-		var thrustCos = thrust * GameManager.Instance.speedMultiplier * Mathf.Cos(steering);
+		var thrustCos = thrust * thrustBaseMiltiplier * GameManager.Instance.speedMultiplier * Mathf.Cos(steering);
 		boatRigidBody.AddForceAtPosition(transform.forward * thrustCos, turnAxis.position);
 
 		//Apply turning force
-		boatRigidBody.AddTorque(-transform.up * (thrust * GameManager.Instance.speedMultiplier * Mathf.Sin(steering)));
+		boatRigidBody.AddTorque(-transform.up * (thrust * thrustBaseMiltiplier * GameManager.Instance.speedMultiplier * Mathf.Sin(steering)));
 	}
 
 	private void ReduceFuel()
     {
-        GameManager.Instance.useFuel(fuelEfficiency * thrust);
+        GameManager.Instance.useFuel(fuelEfficiency * Mathf.Abs(thrust));
     }
 
     private void SpinThePaddle()
@@ -157,12 +163,12 @@ public class BoatController : MonoBehaviour
 		if (GameManager.Instance.fuelLevel > 0)
 		{
 			//ajdust engine
-			engineAudio.pitch = 1 + (thrust * pitchAdjustAmount);
+			engineAudio.pitch = 1 + (Mathf.Abs(thrust) * pitchAdjustAmount);
 
 			//adjust paddle
 			paddleAudio.volume = Mathf.Clamp(thrust / fullSoundThreshold, 0, 1);
 		}
-		else if (GameManager.Instance.fuelLevel == 0 && engineAudio.pitch > 0)
+		else if (GameManager.Instance.fuelLevel == 0 && engineAudio.pitch > 0) //we've run out of fuel so the engine sound dies down
 		{
 			//ajdust engine
 			engineAudio.pitch -= .01f;
@@ -170,9 +176,8 @@ public class BoatController : MonoBehaviour
 			//adjust paddle
 			paddleAudio.volume = 0;
 		}
-		else if (GameManager.Instance.fuelLevel == 0 && engineAudio.pitch <= 0)
+		else if (GameManager.Instance.fuelLevel == 0 && engineAudio.pitch <= 0) //the engine is dead
 		{
-			//quiet down the engine
 			engineAudio.volume = 0;
 		}
 	}
