@@ -1,0 +1,12 @@
+Font: Liberation Sans  Style: Regular
+Point Size: 4   SP/PD Ratio: 750.0%
+
+Characters included: 250/250
+Missing characters: 0
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+
+Characters excluded from packing:
+----------------------------------------

@@ -3335,7 +3335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369115798}
   m_LocalRotation: {x: 0.0032812539, y: 0.0000017881393, z: 0.00014829884, w: 0.9999947}
-  m_LocalPosition: {x: -0.054000024, y: 0.9810001, z: 7.257}
+  m_LocalPosition: {x: -0.15, y: 1.17, z: 6.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1460877122148076926}
@@ -4263,7 +4263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899447823}
   m_LocalRotation: {x: 0.0032812539, y: 0.0000017881393, z: 0.00014829884, w: 0.9999947}
-  m_LocalPosition: {x: -0.054000024, y: 0.9810001, z: 7.257}
+  m_LocalPosition: {x: -0.15, y: 1.17, z: 6.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1460877122148076926}
@@ -4947,7 +4947,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -8586,7 +8586,7 @@ GameObject:
   - component: {fileID: 209721681826012975}
   m_Layer: 0
   m_Name: ThrustV2
-  m_TagString: MainControls
+  m_TagString: MainControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8716,7 +8716,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  rotType: 1
+  rotType: 0
   interactable: {fileID: 5297145543651274112}
   anchorSpawnPoint: {fileID: 5410271867038899518}
   maxRotation: 75
@@ -8899,6 +8899,8 @@ MonoBehaviour:
   thrustRotationOffset: 0
   fuelEfficiency: 0.45
   thrust: 0
+  thrustBaseMiltiplier: 1.1
+  reverseDampener: 0.5
   steering: -0.01
 --- !u!114 &1699015427
 MonoBehaviour:
@@ -8924,9 +8926,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.5099998
-  m_Height: 16.888077
+  m_Height: 16.544794
   m_Direction: 2
-  m_Center: {x: 6.2, y: -2.6999989, z: -1.6046841}
+  m_Center: {x: 4.5499997, y: -2.6999989, z: 1.1983671}
 --- !u!136 &426887056
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8938,9 +8940,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.5099998
-  m_Height: 17.353436
+  m_Height: 17.162878
   m_Direction: 2
-  m_Center: {x: -6.34, y: -2.6999989, z: -1.7037293}
+  m_Center: {x: -4.51, y: -2.6999989, z: 1.2747219}
 --- !u!82 &810979982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9241,7 +9243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2427357838344939068}
   m_LocalRotation: {x: -0, y: 0.00000058114523, z: -0, w: 1}
-  m_LocalPosition: {x: -0.073, y: -0.419, z: 4.61}
+  m_LocalPosition: {x: -0.073, y: -0.419, z: 4.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 862389302524096487}
@@ -9307,7 +9309,7 @@ GameObject:
   - component: {fileID: 7332325863780920836}
   m_Layer: 0
   m_Name: WheelV2
-  m_TagString: MainControls
+  m_TagString: MainControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9385,7 +9387,7 @@ BoxCollider:
   m_GameObject: {fileID: 2880579380278265768}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -9484,7 +9486,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  rotType: 1
+  rotType: 0
   interactable: {fileID: 6360156485263876924}
   anchorSpawnPoint: {fileID: 194241885896874285}
   maxRotation: 60
@@ -10626,7 +10628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5905363654040701063}
   m_LocalRotation: {x: 0.04816898, y: 0.08530791, z: -0.0041291113, w: 0.995181}
-  m_LocalPosition: {x: 0.015299894, y: 0.033400003, z: 0.003500998}
+  m_LocalPosition: {x: 0.007, y: 0.038, z: -0.044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6372083989687477064}
@@ -10811,8 +10813,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 1, a: 1}
-      key1: {r: 0, g: 0, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 0.5990566, g: 1, b: 0.93844825, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -10827,7 +10829,7 @@ LineRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
+      atime0: 31997
       atime1: 65535
       atime2: 0
       atime3: 0
@@ -10887,53 +10889,24 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ValidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 0.9859309, b: 0.16509432, a: 0.654902}
+    key0: {r: 1, g: 1, b: 1, a: 0}
+    key1: {r: 0.5990566, g: 1, b: 0.93844825, a: 1}
     key2: {r: 1, g: 1, b: 1, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 4433
+    ctime1: 65535
     ctime2: 65535
-    ctime3: 0
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 0
-    atime1: 4819
-    atime2: 8481
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 3
-  m_InvalidColorGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 0.9764706, g: 0.18803546, b: 0.18039213, a: 0.77254903}
-    key2: {r: 0.78039217, g: 0.06915599, b: 0.03921568, a: 0}
-    key3: {r: 0.47843137, g: 0.018173689, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 5012
-    ctime2: 23708
-    ctime3: 48959
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 22166
+    atime0: 30262
+    atime1: 65535
     atime2: 65535
     atime3: 0
     atime4: 0
@@ -10941,8 +10914,37 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 4
-    m_NumAlphaKeys: 3
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  m_InvalidColorGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 0}
+    key1: {r: 0.47843137, g: 0.018173689, b: 0, a: 1}
+    key2: {r: 0.78039217, g: 0.06915599, b: 0.03921568, a: 0}
+    key3: {r: 0.47843137, g: 0.018173689, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 23708
+    ctime3: 48959
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 30840
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   m_SmoothMovement: 0
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
@@ -11249,7 +11251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6452752770801907208}
   m_LocalRotation: {x: 0.105962984, y: 0.09201169, z: -0.009847779, w: 0.99005497}
-  m_LocalPosition: {x: 0.022500066, y: 0.03990005, z: 0.011899546}
+  m_LocalPosition: {x: 0.013, y: 0.051, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8385225905917137648}
@@ -11434,8 +11436,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 1, a: 1}
-      key1: {r: 0, g: 0, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 0.5990566, g: 1, b: 0.93844825, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -11450,7 +11452,7 @@ LineRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
+      atime0: 31418
       atime1: 65535
       atime2: 0
       atime3: 0
@@ -11510,8 +11512,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ValidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 0.9859309, b: 0.16509432, a: 0.654902}
+    key0: {r: 1, g: 1, b: 1, a: 0}
+    key1: {r: 0.5990566, g: 1, b: 0.93844825, a: 1}
     key2: {r: 1, g: 1, b: 1, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -11519,15 +11521,15 @@ MonoBehaviour:
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 4433
+    ctime1: 65535
     ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 0
-    atime1: 4819
+    atime0: 29684
+    atime1: 65535
     atime2: 8481
     atime3: 0
     atime4: 0
@@ -11535,28 +11537,28 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 3
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 0.9764706, g: 0.18803546, b: 0.18039213, a: 0.77254903}
-    key2: {r: 0.78039217, g: 0.06915599, b: 0.03921568, a: 0}
+    key0: {r: 1, g: 1, b: 1, a: 0}
+    key1: {r: 0.47843137, g: 0.018173689, b: 0, a: 1}
+    key2: {r: 0.47843137, g: 0.018173689, b: 0, a: 1}
     key3: {r: 0.47843137, g: 0.018173689, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 5012
-    ctime2: 23708
-    ctime3: 48959
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 0
-    atime1: 22166
+    atime0: 30840
+    atime1: 65535
     atime2: 65535
     atime3: 0
     atime4: 0
@@ -11564,8 +11566,8 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 4
-    m_NumAlphaKeys: 3
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   m_SmoothMovement: 0
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
