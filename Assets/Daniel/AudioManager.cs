@@ -6,8 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioClip menuMusic, sailingMusic, scavRadio, backgroundBoat, bargeNoise, trashSuckerStartUp, trashSuckerRunning, trashSuckerSpinDown, steamBoatEngine, steamBoatPaddle;
+    public AudioClip menuMusic, sailingMusic, scavRadio, backgroundBoat, bargeNoise, trashSuckerStartUp, trashSuckerRunning, trashSuckerSpinDown, trashSuckerPop, steamBoatEngine, steamBoatPaddle;
 
+	public AudioClip[] coinDrops;
 
     [SerializeField] public AudioSource Music1;
     [SerializeField] public AudioSource Music2;
@@ -17,6 +18,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public float fadetime = 1f;
     [SerializeField] public float radiofadetime = 5f;
 
+	private Coroutine scavFadeIn;
+	private Coroutine scavFadeOut;
 
     private void Awake()
     {
@@ -30,25 +33,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
-    /// 
-    /// Menu music on load
-    /// Sailing music as you're cruising, 
-    /// start from pressing start -- stop menu music, play saoiling music
-    /// Radio
-    /// Scan radio has it's own audio source
-    /// Fade out sailing music
-    /// Pause - stop sailing music and play menu music
-    /// 
-
-
-
     public void PlayStartMusic()
     {
-        //
+        
     }
-
-
 
     public void TransToSail()
     {
@@ -59,23 +47,27 @@ public class AudioManager : MonoBehaviour
 
     public void FadeScavIn()
     {
-        StartCoroutine(FadeOut(Music2, radiofadetime));
+		if (scavFadeIn == null)
+			scavFadeIn = StartCoroutine(FadeOut(Music2, radiofadetime));
     }
 
     public void FadeScavOut()
     {
-        StartCoroutine(FadeIn(Music2, radiofadetime));
+		if (scavFadeOut == null)
+			scavFadeOut = StartCoroutine(FadeIn(Music2, radiofadetime));
     }
-
-
 
     public void PlaySound(AudioClip sound)
     {
         Sounds.PlayOneShot(sound);
     }
+	public AudioClip GetRandCoinSound()
+	{
+		return coinDrops[Random.Range(0, coinDrops.Length - 1)];
+	}
 
-
-    public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+	//Coroutines
+	public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
     {
         float startVolume = audioSource.volume;
         while (audioSource.volume > 0)
@@ -87,7 +79,10 @@ public class AudioManager : MonoBehaviour
 
         audioSource.Stop();
         audioSource.volume = startVolume;
+
+		scavFadeOut = null;
     }
+
     public IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
     {
         float startVolume = audioSource.volume;
@@ -100,8 +95,9 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         audioSource.volume = startVolume;
-    }
 
+		scavFadeIn = null;
+	}
 
     // references
     //public void StopAllSounds()
@@ -150,7 +146,4 @@ public class AudioManager : MonoBehaviour
     //    Music1.clip = music;
     //    Music1.Play();
     //}
-
-
-
 }

@@ -33,8 +33,7 @@ public class TogglePauseMenu : MonoBehaviour
     public void ActivateMenu()
     {
         // toggle menu
-        bool isActive = !gameObject.activeSelf;
-        gameObject.SetActive(isActive);
+        gameObject.SetActive(!gameObject.activeSelf);
     }
 
     public void QuitGame()

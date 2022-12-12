@@ -14,6 +14,8 @@ public class scriptBuyStuff : MonoBehaviour
 	public ButtonType type;
 
 	public int cost;
+
+	public AudioSource srcChaChing;
 	
 	private Button button;
 
@@ -24,7 +26,10 @@ public class scriptBuyStuff : MonoBehaviour
 
 		if (button == null)
 			Debug.LogError("No button component found.", this);
-    }
+
+		if (srcChaChing == null)
+			Debug.LogError("No audio source found.", this);
+	}
 
     // Update is called once per frame
     void FixedUpdate()
@@ -35,16 +40,22 @@ public class scriptBuyStuff : MonoBehaviour
 
 	public void buyFuel()
 	{
+		srcChaChing?.PlayOneShot(srcChaChing.clip);
+
 		GameManager.Instance.buyFuel(cost);
 	}
 
 	public void buyTrashCapacityUpgrade()
 	{
+		srcChaChing?.PlayOneShot(srcChaChing.clip);
+
 		GameManager.Instance.buyTrashCapacityUpgrade(cost);
 	}
 
 	public void buySpeedUpgrade()
 	{
+		srcChaChing?.PlayOneShot(srcChaChing.clip);
+
 		GameManager.Instance.buySpeedUpgrade(cost);
 	}
 }

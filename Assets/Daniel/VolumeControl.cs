@@ -17,9 +17,7 @@ public class VolumeControl : MonoBehaviour
     private void Awake()
     {
         _slider.onValueChanged.AddListener(HandleSliderValueChanged);
-    } 
-
-   
+    }
 
     private void HandleSliderValueChanged(float value)
     {
@@ -28,7 +26,7 @@ public class VolumeControl : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat(_volumeParameter, _slider.value);        
+        PlayerPrefs.SetFloat(_volumeParameter, _slider.value);
     }
 
     // Start is called before the first frame update
@@ -36,6 +34,4 @@ public class VolumeControl : MonoBehaviour
     {
         _slider.value = PlayerPrefs.GetFloat(_volumeParameter, _slider.value); 
     }
-
-
 }

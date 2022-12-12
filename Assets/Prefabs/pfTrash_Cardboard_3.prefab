@@ -55,8 +55,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6aad47926e788241a9a993c2888aba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 70
+  value: 60
   isCollected: 0
+  collectionSound: {fileID: 8300000, guid: 563b87f2768fb6e4a8eacf9957e995eb, type: 3}
 --- !u!65 &5313756401031118540
 BoxCollider:
   m_ObjectHideFlags: 0

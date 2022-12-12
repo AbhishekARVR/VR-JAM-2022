@@ -10,6 +10,8 @@ public class BoatController : MonoBehaviour
     [SerializeField] private Rigidbody boatRigidBody;
     [SerializeField] private Transform turnAxis, SteerTransform, ThrustTransform;
     [SerializeField] private float buoyancyBobRange;
+	[Tooltip("Since the range is based on velocity, this will lessen the effect movinvg faster has on bob motion of the boat.")]
+	[SerializeField] public float buoyancyDampener = .5f;
     [SerializeField] private float buoyancyBobSpeed;
     [SerializeField] private GameObject _rightPaddle;
     [SerializeField] private GameObject _leftPaddle;
@@ -23,8 +25,9 @@ public class BoatController : MonoBehaviour
 
 	[Range(0f, 1f)]
     [SerializeField] public float thrust;
-	[Tooltip("A value between 0 and 1 that represents the ratio of the max speed we want to allow for going in reverse.")]
 	[SerializeField] public float thrustBaseMiltiplier;
+	[Tooltip("A value between 0 and 1 that represents the ratio of the max speed we want to allow for going in reverse.")]
+	[Range(0f, 1f)]
 	[SerializeField] public float reverseDampener;
     [Range(-1f, 1f)] 
     [SerializeField] private float steering;
@@ -87,7 +90,7 @@ public class BoatController : MonoBehaviour
 
 	private void HandleBuoyancy(float speed)
 	{
-		buoyancyBobRange = 0.1f + (speed / 4) * 0.3f;
+		buoyancyBobRange = 0.01f + speed * buoyancyDampener;
 
 		float y = (initialYPosition + (Mathf.Sin(Time.time * buoyancyBobSpeed)) * buoyancyBobRange);
 		transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);

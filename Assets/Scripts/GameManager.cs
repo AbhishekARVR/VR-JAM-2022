@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
 	public scriptDashBoard dash;
+	[SerializeField]
+	private AudioSource srcDash;
 
 	public int playerFunds = 0;
 	public int trashCount = 0;
@@ -44,7 +46,13 @@ public class GameManager : MonoBehaviour
 		if (dashObj == null)
 			Debug.LogError("No dash object found in scene.", this);
 		else
+		{
 			dash = dashObj.GetComponent<scriptDashBoard>();
+			srcDash = dashObj.GetComponentInChildren<AudioSource>();
+
+			if (srcDash == null)
+				Debug.LogError("No dash audio source found.", this);
+		}
     }
 
     // Update is called once per frame
@@ -97,7 +105,9 @@ public class GameManager : MonoBehaviour
 	{
 		playerFunds += value;
 
-		//Play cha-ching audio?
+		//play coin drop audio if we are gaining funds.
+		if (value > 0)
+			srcDash.PlayOneShot(AudioManager.Instance.GetRandCoinSound());
 
 		//Update Dash UI
 		dash.updateFundsAmount(playerFunds);
@@ -119,8 +129,6 @@ public class GameManager : MonoBehaviour
 	{
 		trashCapacity += increaseAmount;
 
-		//Play cool upgrade sound!
-
 		//Update Dash UI
 		dash.updateTrashAmount(trashCount);
 	}
@@ -128,8 +136,6 @@ public class GameManager : MonoBehaviour
 	public void updateSpeed(float increaseAmount)
 	{
 		speedMultiplier += increaseAmount;
-
-		//Play cool upgrade sound!
 
 	}
 
@@ -142,7 +148,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Top off the tank and charge the player.
+	/// Top off the tank and take the players money.
 	/// </summary>
 	/// <param name="cost"></param>
 	public void buyFuel(int cost)

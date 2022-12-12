@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 75
   isCollected: 0
+  collectionSound: {fileID: 8300000, guid: b4b49b163549b1944b8fefc56419fb8d, type: 3}
 --- !u!65 &5313756401031118540
 BoxCollider:
   m_ObjectHideFlags: 0

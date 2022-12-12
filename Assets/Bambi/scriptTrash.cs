@@ -6,6 +6,7 @@ public class scriptTrash : MonoBehaviour
 {
 	public int value;
 	public bool isCollected;
+	public AudioClip collectionSound;
 
 	private void Awake()
 	{

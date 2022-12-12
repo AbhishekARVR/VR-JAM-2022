@@ -35,8 +35,6 @@ public class scriptTrashChute : MonoBehaviour
 	{
 		if (other.CompareTag("Boat") && suctionTrashRoutine == null)
 		{
-			Debug.Log("Entering trash suction zone.");
-
 			collector = other.GetComponentInChildren<scriptCollector>();
 
 			//get trash amount on player
@@ -52,6 +50,9 @@ public class scriptTrashChute : MonoBehaviour
 		{
 			if (other.CompareTag("Trash"))
 			{
+				//Play thunk sound
+				oneShots.PlayOneShot(AudioManager.Instance.trashSuckerPop);
+				
 				var trash = other.GetComponent<scriptTrash>();
 
 				if (GameManager.Instance.updateTrash(-1))

@@ -11,6 +11,10 @@ public class scriptCollector : MonoBehaviour
 	public float tubeExitForce;
 	public BoxCollider trashZone;
 
+	private AudioSource srcTrashZone;
+	private AudioSource srcTrashJostle;
+	public GameObject trashSuckNode;
+
 	public List<GameObject> collectedTrash;
 
 	private void Start()
@@ -22,15 +26,25 @@ public class scriptCollector : MonoBehaviour
 		if (trashDumpPoint == null)
 			Debug.LogError("No trash dump point set.", this);
 
+		srcTrashJostle = GetComponent<AudioSource>();
+
+		if (srcTrashJostle == null)
+			Debug.LogError("No audio source component set.", this);
+
+		if (trashSuckNode == null)
+			Debug.LogError("No trash suck node set.", this);
+
+
+		//initialization
 		collectedTrash = new List<GameObject>();
+
+		srcTrashZone = trashZone.gameObject.GetComponent<AudioSource>();
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.CompareTag("Trash"))
 		{
-			//Debug.Log("Got trash.");
-			
 			StartCoroutine("processTrash", collision.gameObject);
 		}
 	}
@@ -39,8 +53,6 @@ public class scriptCollector : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Trash"))
 		{
-			//Debug.Log("Got trash.");
-
 			StartCoroutine("processTrash", collision.gameObject);
 		}
 	}
@@ -74,6 +86,10 @@ public class scriptCollector : MonoBehaviour
 	{
 		if (GameManager.Instance.updateTrash(1))
 		{
+			//Play trash collection sound
+			srcTrashJostle.clip = trashObj.GetComponent<scriptTrash>().collectionSound;
+			srcTrashJostle.PlayOneShot(srcTrashJostle.clip);
+			
 			//Remove trash from its chunk
 			scriptOceanManager.Instance.RemoveCollectedTrash(trashObj.transform.position, trashObj);
 		
@@ -84,11 +100,24 @@ public class scriptCollector : MonoBehaviour
 			prepareRigidbody(trashObj);
 			trashObj.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
 
+			//Start the trash suck audio sequence
+			var trashNodeObj = Instantiate(trashSuckNode, transform.position, Quaternion.identity);
+			var trashNode = trashNodeObj.GetComponent<TrashSuckNode>();
+			trashNode.destination = trashZone.transform;
+			trashNode.GetTaSuckin();
+
 			//Let trash move down the pipe
-			yield return new WaitForSeconds(tubeTime);
+			while (trashNode != null)
+			{
+				yield return null;
+			}
+			//yield return new WaitForSeconds(tubeTime);
 
 			//Dump trash
 			trashObj.SetActive(true);
+
+			//Jostle the cage
+			srcTrashZone.PlayOneShot(srcTrashZone.clip);
 
 			//Place randomly within the trash dump zone
 			trashObj.transform.position = new Vector3(
