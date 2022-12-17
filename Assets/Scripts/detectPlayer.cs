@@ -12,7 +12,6 @@ public class detectPlayer : MonoBehaviour
             //fades out sailing music, so you can hear the spatial scav radio audio source
             AudioManager.Instance.FadeScavIn();
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -22,6 +21,5 @@ public class detectPlayer : MonoBehaviour
             //fades in sailing music as you leave spatial scav radio audio source
             AudioManager.Instance.FadeScavOut();
         }
-        
     }
 }

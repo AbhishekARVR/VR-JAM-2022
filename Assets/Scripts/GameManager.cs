@@ -114,13 +114,28 @@ public class GameManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Set the fuel level to the passed in value.
+	/// Set the fuel level to a specific value.
 	/// </summary>
 	/// <param name="value"></param>
-    public void updateFuel(float value)
+    public void setFuel(float value)
 	{
 		fuelLevel = value;
 		
+		//Update Dash UI
+		dash.updateFuelAmount(fuelLevel);
+	}
+
+	/// <summary>
+	/// change the fuel by the given amount.
+	/// </summary>
+	/// <param name="value"></param>
+	public void useFuel(float value)
+	{
+		fuelLevel -= value;
+
+		if (fuelLevel < 0)
+			fuelLevel = 0;
+
 		//Update Dash UI
 		dash.updateFuelAmount(fuelLevel);
 	}
@@ -136,19 +151,10 @@ public class GameManager : MonoBehaviour
 	public void updateSpeed(float increaseAmount)
 	{
 		speedMultiplier += increaseAmount;
-
-	}
-
-	public void useFuel(float value)
-	{
-		fuelLevel -= value;
-
-		//Update Dash UI
-		dash.updateFuelAmount(fuelLevel);
 	}
 
 	/// <summary>
-	/// Top off the tank and take the players money.
+	/// Top off the tank and take the players hard earned dollery doos.
 	/// </summary>
 	/// <param name="cost"></param>
 	public void buyFuel(int cost)
@@ -156,7 +162,7 @@ public class GameManager : MonoBehaviour
 		if (playerFunds >= cost && fuelLevel < maxFuel)
 		{
 			updatePlayerFunds(-(cost));
-			updateFuel(100);
+			setFuel(100);
 		}
 	}
 	

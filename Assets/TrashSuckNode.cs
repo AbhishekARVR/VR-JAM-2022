@@ -35,12 +35,14 @@ public class TrashSuckNode : MonoBehaviour
 
 	private void CheckForDeath()
 	{
-		var xDif = Mathf.Abs(transform.position.x - destination.position.x);
-		var yDif = Mathf.Abs(transform.position.y - destination.position.y);
-		var zDif = Mathf.Abs(transform.position.z - destination.position.z);
+		//if the node is sufficiently close to target, destory it
+		var dist = (transform.position - destination.position).sqrMagnitude;
 
-		if (xDif < destroyThreshold && yDif < destroyThreshold && zDif < destroyThreshold)
+		if (dist < destroyThreshold)
+		{
+			print("Trash node destroyed");
 			Destroy(this.gameObject);
+		}
 	}
 
 	private void MoveTowardsDestination()

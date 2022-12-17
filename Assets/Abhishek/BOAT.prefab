@@ -9360,6 +9360,7 @@ MonoBehaviour:
   SteerTransform: {fileID: 6360156485263876924}
   ThrustTransform: {fileID: 5297145543651274112}
   buoyancyBobRange: 0
+  buoyancyDampener: 0.5
   buoyancyBobSpeed: 1
   _rightPaddle: {fileID: 6139962765264820207}
   _leftPaddle: {fileID: 4415491707370377025}

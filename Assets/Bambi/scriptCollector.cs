@@ -101,11 +101,11 @@ public class scriptCollector : MonoBehaviour
 			trashObj.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
 
 			//Start the trash suck audio sequence
-			var trashNodeObj = Instantiate(trashSuckNode, transform.position, Quaternion.identity);
+			var trashNodeObj = Instantiate(trashSuckNode, transform.position, Quaternion.identity, transform);
 			var trashNode = trashNodeObj.GetComponent<TrashSuckNode>();
 			trashNode.destination = trashZone.transform;
 			trashNode.GetTaSuckin();
-
+			
 			//Let trash move down the pipe
 			while (trashNode != null)
 			{

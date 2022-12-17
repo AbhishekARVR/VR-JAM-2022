@@ -2757,6 +2757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7892833017326923026}
   - component: {fileID: 8759795198263600858}
+  - component: {fileID: 7842247680472143505}
   m_Layer: 0
   m_Name: pfTheRig
   m_TagString: Untagged
@@ -2791,6 +2792,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d542c7b062821864591479abc3a1c40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &7842247680472143505
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892833017326923027}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7892833017701532079
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,14 +4215,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
---- !u!1 &834637712307170868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1848108913512988, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
-  m_PrefabInstance: {fileID: 834197597869407272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &836777091834490986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4360797459827778, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
+  m_PrefabInstance: {fileID: 834197597869407272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &834637712307170868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1848108913512988, guid: 4a68610f59a4280429c8b2d0813fc135, type: 3}
   m_PrefabInstance: {fileID: 834197597869407272}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &48974706

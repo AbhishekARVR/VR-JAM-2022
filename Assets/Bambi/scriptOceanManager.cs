@@ -19,6 +19,8 @@ public class scriptOceanManager : MonoBehaviour
 	public int minTrashQuantity = 1;
 	[Tooltip("How many chunks does the player have to explore before finding something interesting.")]
 	public int pointOfInterestSpawnRate;
+	[Tooltip("Offset the POIs so we don't spawn near the starting barge.")]
+	public int pointOfInterestOffset;
 	[Tooltip("How many barges have to spawn before a rig appears.")]
 	public int rigMultiplier;
 
@@ -94,7 +96,7 @@ public class scriptOceanManager : MonoBehaviour
 
 				if (chunks.TryGetValue(viewedChunkCoord, out OceanChunk chunk))
 				{
-					if (!chunksVisible.Contains(chunk)) //then the chunk was previously initialized, hidden, and is now redisplaying.
+					if (!chunksVisible.Contains(chunk)) //then the chunk was previously initialized, hidden, and is now coming back into view.
 						chunksVisible.Add(chunk);
 				}
 				else
@@ -151,17 +153,17 @@ public class scriptOceanManager : MonoBehaviour
 	public (ChunkType type, List<GameObject> objs) SpawnChunkObjects(Bounds bounds)
 	{
 		//check if we should spawn a rig
-		if (chunks.Count > 0 && chunks.Count % (pointOfInterestSpawnRate * rigMultiplier) == 0)
+		if (chunks.Count > 0 && chunks.Count % (pointOfInterestSpawnRate * rigMultiplier + pointOfInterestOffset) == 0)
 			return (ChunkType.Rig, new List<GameObject>()
 			{
-				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.Euler(0, Random.Range(0, 359), 0))
+				Instantiate(rigPfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.Euler(0, Random.Range(0, 359), 0), transform)
 			});
 
 		//check if we should spawn a barge
-		if (chunks.Count > 0 && chunks.Count % pointOfInterestSpawnRate == 0)
+		if (chunks.Count > 0 && chunks.Count % pointOfInterestSpawnRate + pointOfInterestOffset == 0)
 			return (ChunkType.Barge, new List<GameObject>()
 			{
-				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.Euler(0, Random.Range(0, 359), 0))
+				Instantiate(bargePfab, new Vector3(bounds.center.x, 0, bounds.center.y), Quaternion.Euler(0, Random.Range(0, 359), 0), transform)
 			});
 
 		//else spawn trash
@@ -185,10 +187,7 @@ public class scriptOceanManager : MonoBehaviour
 			var pfabTrash = trashPfabs[randomIndexForTrash];
 			pfabTrash.SetActive(true); //make sure pfab is active before spawning.
 
-			//Debug.Log("trash==" + randomIndexForTrash);
-
-			var trash = Instantiate(pfabTrash, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir));
-			trash.transform.parent = transform;
+			var trash = Instantiate(pfabTrash, new Vector3(randX, .35f, randY), Quaternion.Euler(randDir, randDir, randDir), transform);
 
 			chunkTrash.Add(trash);
 		}
@@ -198,12 +197,12 @@ public class scriptOceanManager : MonoBehaviour
 
 	public void UpdateObjectVisibility(bool isVisible, List<GameObject> objs)
 	{
-		foreach(GameObject obj in objs)
-		{
-			//No need to loop through if everyone is already set to the correct value.
-			if (obj.activeSelf == isVisible)
-				break;
+		//No need to loop through objects if our visibility hasn't changed.
+		if (objs.Count == 0 || objs[0].activeSelf == isVisible)
+			return;
 
+		foreach (GameObject obj in objs)
+		{
 			obj.SetActive(isVisible);
 		}
 	}
