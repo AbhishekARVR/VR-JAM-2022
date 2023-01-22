@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class scriptRadio : MonoBehaviour
 {
+	public bool randomPlay = true;
 	private AudioSource aSrc;
 
     void Awake()
@@ -14,6 +15,7 @@ public class scriptRadio : MonoBehaviour
 			Debug.LogError("No audio source found on radio.", this);
 
 		//Play music at a random point in the clip so approaching the barge doesn't sound the same every time.
-		aSrc.time = Random.Range(0f, aSrc.clip.length);
+		if (randomPlay)
+			aSrc.time = Random.Range(0f, aSrc.clip.length);
     }
 }

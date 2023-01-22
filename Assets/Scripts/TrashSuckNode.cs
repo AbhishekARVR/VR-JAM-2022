@@ -39,10 +39,7 @@ public class TrashSuckNode : MonoBehaviour
 		var dist = (transform.position - destination.position).sqrMagnitude;
 
 		if (dist < destroyThreshold)
-		{
-			print("Trash node destroyed");
 			Destroy(this.gameObject);
-		}
 	}
 
 	private void MoveTowardsDestination()

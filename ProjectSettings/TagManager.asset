@@ -9,6 +9,7 @@ TagManager:
   - Radio
   - Dash
   - MainControl
+  - SpectatorCamera
   layers:
   - Default
   - TransparentFX

@@ -18,8 +18,7 @@ public class scriptOceanBob : MonoBehaviour
 		//DoTheBob();
 	}
 
-    //Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 		DoTheBob();
 	}

@@ -72,6 +72,7 @@ public class ControllerInput : MonoBehaviour
 
 	private void CheckThumb()
 	{
+		//are you touching a face button
 		SetFingerTargets(thumbFingers, touchFaceReference.action.ReadValue<float>());
 	}
 

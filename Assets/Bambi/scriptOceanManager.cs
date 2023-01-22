@@ -11,6 +11,7 @@ public class scriptOceanManager : MonoBehaviour
 
 	public float maxViewDist = 10000;
 	public int mapChunkSize = 50;
+	public float chunkWaitIntervalSeconds = 0.1f;
 	[Tooltip("The y axis plane on which trash should float.")]
 	public float oceanPlane;
 	[Tooltip("The maximum number of trash a chunk can contain.")]
@@ -35,6 +36,9 @@ public class scriptOceanManager : MonoBehaviour
 	private int chunksVisibleInViewDist;
 	private Dictionary<Vector2, OceanChunk> chunks = new Dictionary<Vector2, OceanChunk>();
 	List<OceanChunk> chunksVisible = new List<OceanChunk>();
+
+	//coroutines
+	private IEnumerator updateChunksRoutine;
 
 	public enum ChunkType
 	{
@@ -75,14 +79,19 @@ public class scriptOceanManager : MonoBehaviour
 		chunksVisibleInViewDist = Mathf.RoundToInt(Mathf.Sqrt(maxViewDist) / mapChunkSize);
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		playerPos = new Vector2(player.position.x, player.position.z);
 
-		UpdateChunks();
+		if (updateChunksRoutine == null)
+		{
+			updateChunksRoutine = UpdateChunks();
+
+			StartCoroutine(updateChunksRoutine);
+		}
 	}
 
-	void UpdateChunks()
+	private IEnumerator UpdateChunks()
 	{
 		int currentChunkCoordX = Mathf.RoundToInt(playerPos.x / mapChunkSize);
 		int currentChunkCoordY = Mathf.RoundToInt(playerPos.y / mapChunkSize);
@@ -134,8 +143,8 @@ public class scriptOceanManager : MonoBehaviour
 			if (isVisible) //then do object activities
 			{
 				//bob the trash
-				if (chunk.type == ChunkType.Trash)
-					BobTrash(chunk.objects);
+				//if (chunk.type == ChunkType.Trash)
+				//	BobTrash(chunk.objects);
 			}
 			else
 			{
@@ -148,6 +157,10 @@ public class scriptOceanManager : MonoBehaviour
 		{
 			chunksVisible.Remove(chunk);
 		}
+
+		yield return new WaitForSeconds(chunkWaitIntervalSeconds);
+
+		updateChunksRoutine = null;
 	}
 
 	public (ChunkType type, List<GameObject> objs) SpawnChunkObjects(Bounds bounds)
