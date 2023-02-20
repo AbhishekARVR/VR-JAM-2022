@@ -104,6 +104,26 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &-2634147007628415354
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Trailer Mix
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: a84cacf7a4e197d40849de17ec3f5192
+  m_FloatValues:
+    f2154ba11c1226e4c81113f9aa9e9460: -0.16685188
+    3f28c3527ae8e1148a8f8d390e4990eb: 3.2656894
+    2648cca25c52afc48920fda9d9d60796: -5.7224774
+    075710f5e927e1c4686e716786efe5b4: -0.002441872
+    54a273bd9441158489b7a0144eb08e7c: 2.0905998
+    32c210dd64e24b543841e484aed6ee94: -0.025776558
+    a7bb6b4e85a61b341a3c25c9cde1842f: -80
+    2ecb84aeca7e0f843a579161ac7cda09: 0.8772599
+    e2bd4dde1e62d80499c3cc430f88bc8e: -8.481216
+  m_TransitionOverrides: {}
 --- !u!243 &-2507140997655426667
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -158,7 +178,8 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
-  m_StartSnapshot: {fileID: 24500006}
+  - {fileID: -2634147007628415354}
+  m_StartSnapshot: {fileID: -2634147007628415354}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
@@ -184,7 +205,7 @@ AudioMixerController:
     - 1ce90a56e9e8e404e84f4e634e05afe4
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -2634147007628415354}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -227,7 +248,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Main Mix
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: a74fd3a001aa74c4ca9e31ed6d1b5048
   m_FloatValues:
@@ -235,9 +256,9 @@ AudioMixerSnapshotController:
     3f28c3527ae8e1148a8f8d390e4990eb: 3.2656894
     2648cca25c52afc48920fda9d9d60796: -5.7224774
     075710f5e927e1c4686e716786efe5b4: -0.002441872
-    54a273bd9441158489b7a0144eb08e7c: -5.3230734
+    54a273bd9441158489b7a0144eb08e7c: 2.0905998
     32c210dd64e24b543841e484aed6ee94: -0.025776558
-    a7bb6b4e85a61b341a3c25c9cde1842f: -18.757307
+    a7bb6b4e85a61b341a3c25c9cde1842f: -6.238344
     2ecb84aeca7e0f843a579161ac7cda09: 0.8772599
     e2bd4dde1e62d80499c3cc430f88bc8e: -8.481216
   m_TransitionOverrides: {}

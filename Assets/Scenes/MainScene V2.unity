@@ -531,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221053809585738199, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1460877122148076926, guid: f8bd8a6d3ca123047b5dbb07a7ba7ded, type: 3}
       propertyPath: m_RootOrder
@@ -1370,6 +1370,14 @@ PrefabInstance:
     - target: {fileID: 7347284249159260032, guid: 97411c148b192f84db343410d2d3eabf, type: 3}
       propertyPath: m_Name
       value: OceanManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347284249159260033, guid: 97411c148b192f84db343410d2d3eabf, type: 3}
+      propertyPath: pointOfInterestOffset
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347284249159260033, guid: 97411c148b192f84db343410d2d3eabf, type: 3}
+      propertyPath: chunkWaitIntervalSeconds
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7347284249159260033, guid: 97411c148b192f84db343410d2d3eabf, type: 3}
       propertyPath: pointOfInterestSpawnRate

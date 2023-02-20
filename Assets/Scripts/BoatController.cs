@@ -135,7 +135,8 @@ public class BoatController : MonoBehaviour
 
 		//Apply forward force
 		var thrustCos = thrust * thrustBaseMiltiplier * GameManager.Instance.speedMultiplier * Mathf.Cos(steering);
-		boatRigidBody.AddForceAtPosition(transform.forward * thrustCos, turnAxis.position);
+		//boatRigidBody.AddForceAtPosition(transform.forward * thrustCos, turnAxis.position);
+		boatRigidBody.AddForce(transform.forward * thrustCos);
 
 		//Apply turning force
 		boatRigidBody.AddTorque(-transform.up * (thrust * thrustBaseMiltiplier * GameManager.Instance.speedMultiplier * Mathf.Sin(steering)));
